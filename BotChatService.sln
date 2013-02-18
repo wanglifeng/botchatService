@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BotChatService", "BotChatService\BotChatService.csproj", "{3607C66E-620A-4A6B-98B2-73770D45D7F6}"
+EndProject
+Project("{F088123C-0E9E-452A-89E6-6BA2F21D5CAC}") = "ModelingProject1", "ModelingProject1\ModelingProject1.modelproj", "{E918061B-B2D0-47EA-A0C5-37B4DFF42654}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3607C66E-620A-4A6B-98B2-73770D45D7F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3607C66E-620A-4A6B-98B2-73770D45D7F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3607C66E-620A-4A6B-98B2-73770D45D7F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3607C66E-620A-4A6B-98B2-73770D45D7F6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E918061B-B2D0-47EA-A0C5-37B4DFF42654}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E918061B-B2D0-47EA-A0C5-37B4DFF42654}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E918061B-B2D0-47EA-A0C5-37B4DFF42654}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E918061B-B2D0-47EA-A0C5-37B4DFF42654}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

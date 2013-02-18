@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<DirectedGraph xmlns="http://schemas.microsoft.com/vs/2009/dgml">
+  <Nodes>
+    <Node Id="05ff319d-15f4-4598-b4a8-23c9bdb909731" Bounds="-107,-95,76.5633333333333,25.96" Label="New Node" UseManualLocation="True" />
+    <Node Id="4de5d72a-b412-417d-8105-a100209b0fc11" Bounds="-115.366250190735,-178.020000915527,76.5633333333333,25.96" Label="New Node" UseManualLocation="True" />
+    <Node Id="e4d8da44-1312-4bab-b8ca-8f375a95f18b1" Bounds="-225.929583524068,-157.530000457764,76.5633333333333,25.96" Label="New Node" UseManualLocation="True" />
+  </Nodes>
+  <Links />
+  <Properties>
+    <Property Id="Bounds" DataType="System.Windows.Rect" />
+    <Property Id="Label" Label="Label" Description="Displayable label of an Annotatable object" DataType="System.String" />
+    <Property Id="UseManualLocation" DataType="System.Boolean" />
+  </Properties>
+</DirectedGraph>
