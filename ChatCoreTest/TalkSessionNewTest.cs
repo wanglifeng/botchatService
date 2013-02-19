@@ -17,8 +17,13 @@ namespace ChatCoreTest
             Assert.IsInstanceOfType(session.State, typeof(NewState));
 
             Message msg = new Message();
+            msg.Content = "Search";
             session.Request(msg);
             Assert.IsInstanceOfType(session.State, typeof(SearchStartStates));
+
+            msg.Content = "User";
+            session.Request(msg);
+            Assert.IsInstanceOfType(session.State, typeof(UserProfileState));
         }
     }
 }

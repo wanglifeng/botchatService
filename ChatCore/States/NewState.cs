@@ -10,8 +10,11 @@ namespace ChatCore.States
     {
         public override void Handle(TalkSession session, Message msg)
         {
-            if (!String.IsNullOrEmpty(msg.Content) && msg.Content == "search")
+            if (!String.IsNullOrEmpty(msg.Content) && msg.Content == "Search")
                 session.State = new SearchStartStates();
+
+            if (!String.IsNullOrEmpty(msg.Content) && msg.Content == "User")
+                session.State = new UserProfileState();
         }
     }
 }

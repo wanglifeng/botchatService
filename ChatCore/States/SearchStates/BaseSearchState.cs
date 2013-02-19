@@ -9,9 +9,9 @@ namespace ChatCore.States.SearchStates
     {
         public override void Handle(TalkSession session, Message msg)
         {
-            HandleMsg(msg);
+            HandleMsg(session,msg);
         }
 
-        public abstract void HandleMsg(Message msg);
+        public abstract void HandleMsg(TalkSession session, Message msg);
     }
 }

@@ -45,6 +45,7 @@
     <Compile Include="States\NewState.cs" />
     <Compile Include="States\SearchStates\BaseSearchState.cs" />
     <Compile Include="States\SearchStates\SearchStartStates.cs" />
+    <Compile Include="States\UserProfileState.cs" />
     <Compile Include="TalkSession.cs" />
     <Compile Include="User.cs" />
   </ItemGroup>
