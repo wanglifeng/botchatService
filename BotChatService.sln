@@ -5,6 +5,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BotChatService", "BotChatSe
 EndProject
 Project("{F088123C-0E9E-452A-89E6-6BA2F21D5CAC}") = "ModelingProject1", "ModelingProject1\ModelingProject1.modelproj", "{E918061B-B2D0-47EA-A0C5-37B4DFF42654}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChatCore", "ChatCore\ChatCore.csproj", "{AD022630-7F05-4558-AB44-9324696C3461}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChatCoreTest", "ChatCoreTest\ChatCoreTest.csproj", "{5B7A9224-678E-4999-8CF9-4D8F06DBCCCF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,6 +23,14 @@ Global
 		{E918061B-B2D0-47EA-A0C5-37B4DFF42654}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E918061B-B2D0-47EA-A0C5-37B4DFF42654}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E918061B-B2D0-47EA-A0C5-37B4DFF42654}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AD022630-7F05-4558-AB44-9324696C3461}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD022630-7F05-4558-AB44-9324696C3461}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD022630-7F05-4558-AB44-9324696C3461}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD022630-7F05-4558-AB44-9324696C3461}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5B7A9224-678E-4999-8CF9-4D8F06DBCCCF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5B7A9224-678E-4999-8CF9-4D8F06DBCCCF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5B7A9224-678E-4999-8CF9-4D8F06DBCCCF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5B7A9224-678E-4999-8CF9-4D8F06DBCCCF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
