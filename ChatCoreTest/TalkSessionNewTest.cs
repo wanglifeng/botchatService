@@ -4,6 +4,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ChatCore;
 using ChatCore.States;
 using ChatCore.States.SearchStates;
+using ChatCore.States.UserProfileStates;
 
 namespace ChatCoreTest
 {
@@ -13,7 +14,7 @@ namespace ChatCoreTest
         [TestMethod]
         public void TestMethod1()
         {
-            TalkSession session = new TalkSession();
+            TalkSession session = new TalkSession("wanglifeng");
             Assert.IsInstanceOfType(session.State, typeof(NewState));
 
             Message msg = new Message();

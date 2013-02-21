@@ -12,6 +12,8 @@ namespace ChatCore.States.SearchStates
             HandleMsg(session,msg);
         }
 
-        public abstract void HandleMsg(TalkSession session, Message msg);
+        public abstract Message HandleMsg(TalkSession session, Message msg);
+
+        public override abstract String Content { get; }
     }
 }

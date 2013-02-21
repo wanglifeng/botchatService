@@ -7,6 +7,10 @@ namespace ChatCore.States
 {
     public abstract class BaseState
     {
+        public String PreMsg { get; set; }
+
         public abstract void Handle(TalkSession session, Message msg);
+
+        public abstract String Content { get;  }
     }
 }
