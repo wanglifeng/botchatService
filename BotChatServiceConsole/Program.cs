@@ -12,16 +12,14 @@ namespace ChatCoreConsole
         {
             TalkSession session = new TalkSession("wanglifeng");
             Console.WriteLine(session.Message.ToString());
-            session.Request(new Message() { Content = "Search" });
-            Console.WriteLine(session.Message.ToString());
-            session.Request(new Message() { Content = "User" });
-            Console.WriteLine(session.Message.ToString());
-            session.Request(new Message() { Content = "1" });
-            Console.WriteLine(session.Message.ToString());
-            session.Request(new Message() { Content = "王利峰" });
-            Console.WriteLine(session.Message.ToString());
-            session.Request(new Message() { Content = "1" });
-            Console.WriteLine(session.Message.ToString());
+
+            string msgConent = Console.ReadLine();
+            while (!String.IsNullOrEmpty(msgConent))
+            {
+                session.Request(new Message() { Content = msgConent });
+                Console.WriteLine(session.Message.ToString());
+                msgConent = Console.ReadLine();
+            }
         }
     }
 }

@@ -11,11 +11,15 @@ namespace ChatCore.States
     {
         public override void Handle(TalkSession session, Message msg)
         {
-            if (!String.IsNullOrEmpty(msg.Content) && msg.Content == "Search")
-                session.State = new SearchStartStates();
-
-            if (!String.IsNullOrEmpty(msg.Content) && msg.Content == "User")
-                session.State = new UserProfileState();
+            if (!String.IsNullOrEmpty(msg.Content))
+            {
+                if (msg.Content.ToLower() == "search")
+                    session.State = new SearchStartStates();
+                else if (msg.Content.ToLower() == "profile")
+                    session.State = new UserProfileState();
+                else if (msg.Content.ToLower() == "hello2biz")
+                    session.State = new NewUserState();
+            }
         }
 
         public override string Content

@@ -1,4 +1,5 @@
-﻿using ChatCore.States.UserProfileStates;
+﻿using ChatCore.Models;
+using ChatCore.States.UserProfileStates;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,19 +9,21 @@ namespace ChatCore.States.SearchStates
 {
     public class SearchStartStates : BaseSearchState
     {
-        public override Message HandleMsg(TalkSession session, Message msg)
+        public override void HandleMsg(TalkSession session, Message msg)
         {
-            if (!String.IsNullOrEmpty(msg.Content) && msg.Content == "User")
+            if (!String.IsNullOrEmpty(msg.Content))
             {
-                session.State = new UserProfileState();
+                if (msg.Content.ToLower() == "Profile")
+                    session.State = new UserProfileState();
+                else
+                    session.State = new WaitLocationState()
+                    {
+                        Search = new JobSearchModel()
+                            {
+                                Keyword = msg.Content
+                            }
+                    };
             }
-            return new Message()
-{
-    From = msg.To,
-    To = msg.From,
-    Content = session.State.Content,
-    SentTime = DateTime.Now
-};
         }
 
         public override string Content

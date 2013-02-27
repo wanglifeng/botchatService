@@ -9,6 +9,11 @@ namespace ChatCore.States
     {
         public String PreMsg { get; set; }
 
+        public void Handle(Message msg)
+        {
+
+        }
+
         public abstract void Handle(TalkSession session, Message msg);
 
         public abstract String Content { get;  }
