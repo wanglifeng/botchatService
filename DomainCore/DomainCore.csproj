@@ -49,6 +49,7 @@
     <Compile Include="Filters\LocationFilters.cs" />
     <Compile Include="Filters\UnKnowFilter.cs" />
     <Compile Include="IJobRepositary.cs" />
+    <Compile Include="IUserRepositary.cs" />
     <Compile Include="JobLoader.cs" />
     <Compile Include="ICacheObject.cs" />
     <Compile Include="JobRepositaryByAPI.cs" />

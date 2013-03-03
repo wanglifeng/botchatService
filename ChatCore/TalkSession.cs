@@ -1,4 +1,6 @@
-﻿using ChatCore.States;
+﻿using ChatCore.Data;
+using ChatCore.States;
+using DomainCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,9 +10,19 @@ namespace ChatCore
 {
     public class TalkSession
     {
+        public ITalkSessionRepositry TalkSessionRepositry {
+            get
+            {
+                return new TalkSessionRepositryByProgress();
+            }
+        }
+
         public TalkSession(String from)
         {
             State = new NewState();
+            if (TalkSessionRepositry.Get(from) != null)
+                State = TalkSessionRepositry.Get(from).State;
+
             From = from;
         }
 
@@ -21,6 +33,7 @@ namespace ChatCore
         public void Request(Message msg)
         {
             State.Handle(this, msg);
+            TalkSessionRepositry.Save(this);
         }
 
         public Message Message

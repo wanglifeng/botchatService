@@ -1,39 +1,52 @@
-﻿using System;
+﻿using BotChatService.Models;
+using ChatCore;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Web.Http;
+using System.Web.Mvc;
 
 namespace BotChatService.Controllers
 {
-    public class MessagesController : ApiController
+    public class MessagesController : Controller
     {
-        // GET api/values
-        public IEnumerable<string> Get()
+        [HttpGet]
+        public ActionResult Index(String signature, string timestamp, string nonce, string echostr)
         {
-            return new string[] { "value1", "value2" };
+            return new ContentResult() { Content = echostr };
         }
 
-        // GET api/values/5
-        public string Get(int id)
+        [HttpPost]
+        public ActionResult Index()
         {
-            return "value";
-        }
+            string xmlContent = string.Empty;
+            using (StreamReader sr = new StreamReader(Request.InputStream))
+            {
+                xmlContent = sr.ReadToEnd();
+            }
+            WeChatRequestMessage msg = WeChatRequestMessage.CreateFromXml(xmlContent);
 
-        // POST api/values
-        public void Post([FromBody]string value)
-        {
-        }
+            TalkSession talkSession = new TalkSession(msg.FromUserName);
+            talkSession.Request(new Message()
+            {
+                Content = (msg as WeChatRequestTextMessage).Content,
+                From = msg.FromUserName,
+                SentTime = msg.CreateTime,
+                To = msg.ToUserName
+            });
 
-        // PUT api/values/5
-        public void Put(int id, [FromBody]string value)
-        {
-        }
 
-        // DELETE api/values/5
-        public void Delete(int id)
-        {
+            WeChatResponseMessage rsp = new WeChatResponseTextMessage()
+            {
+                FromUser = msg.ToUserName,
+                ToUser = msg.FromUserName,
+                Content = talkSession.Message.Content
+            };
+
+            string xmlResponseContent = rsp.ConvertToWeiChatResponse();
+
+            return new ContentResult() { Content = xmlResponseContent };
+
         }
     }
 }

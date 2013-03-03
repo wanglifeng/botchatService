@@ -17,6 +17,11 @@ namespace ChatCore.States.SearchStates
                     Search.PageIndex++;
                     session.State = new JobResultState() { Search = Search };
                 }
+                else if (msg.Content == "2")
+                {
+                    Search.PageIndex--;
+                    session.State = new JobResultState() { Search = Search };
+                }
                 else
                 {
                     if (msg.Content == "Search")
@@ -45,6 +50,7 @@ namespace ChatCore.States.SearchStates
                 {
                     sb.AppendFormat("Title:{0}\nDID:{1}", t.JobTitle, t.DID);
                 }
+                sb.AppendLine("输入1到下一页");
                 return sb.ToString();
             }
         }

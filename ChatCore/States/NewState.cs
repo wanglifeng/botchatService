@@ -24,7 +24,7 @@ namespace ChatCore.States
 
         public override string Content
         {
-            get { return "1.找工作，2填写个人资料，3 提问"; }
+            get { return "1.Search 找工作\n 2 Profile 填写个人资料 \n3 提问"; }
         }
     }
 }
