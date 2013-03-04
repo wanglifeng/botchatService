@@ -22,7 +22,7 @@ namespace ChatCoreTest
             session.Request(msg);
             Assert.IsInstanceOfType(session.State, typeof(SearchStartStates));
 
-            msg.Content = "User";
+            msg.Content = "Profile";
             session.Request(msg);
             Assert.IsInstanceOfType(session.State, typeof(UserProfileState));
         }
