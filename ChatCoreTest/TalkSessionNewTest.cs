@@ -14,7 +14,7 @@ namespace ChatCoreTest
         [TestMethod]
         public void NewSession()
         {
-            TalkSession session = new TalkSession("wanglifeng");
+            TalkSession session = new TalkSession(Guid.NewGuid().ToString());
             Assert.IsInstanceOfType(session.State, typeof(NewState));
 
             Message msg = new Message();
