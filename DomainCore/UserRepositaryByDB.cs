@@ -6,7 +6,7 @@ using System.Text;
 
 namespace DomainCore
 {
-    public class UserRepositaryByDB:IUserRepositary
+    public class UserRepositaryByDB : IUserRepositary
     {
         public User GetById(int id)
         {
@@ -21,9 +21,22 @@ namespace DomainCore
             using (ChatContext c = new ChatContext())
             {
                 User u = c.Users.SingleOrDefault(t => t.UserName == user.UserName);
-                u.Degree = user.Degree;
-                u.Location = user.Location;
-                u.Name = user.Name;
+                if (u == null)
+                {
+                    u = new User();
+                    u.ClientId = user.ClientId;
+                    u.Degree = user.Degree;
+                    u.Location = user.Location;
+                    u.Name = user.Name;
+                    u.UserName = user.UserName;
+                    c.Users.Add(u);
+                }
+                else
+                {
+                    u.Degree = user.Degree;
+                    u.Location = user.Location;
+                    u.Name = user.Name;
+                }
                 c.SaveChanges();
             }
         }
