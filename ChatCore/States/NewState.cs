@@ -28,7 +28,7 @@ namespace ChatCore.States
                     IQuestionRepositary repo = new QuestionRepostaryByDB();
                     Question q = repo.GetByQuestion(msg.Content);
                     if (q != null)
-                        _Content = q.Content;
+                        _Content = q.Answer;
                 }
             }
         }
