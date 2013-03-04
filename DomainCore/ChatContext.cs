@@ -16,6 +16,7 @@ namespace DomainCore
         public DbSet<ChineseLastName> ChineseLastNames { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Models.Message> Messages { get; set; }
+        public DbSet<Question> Questions { get; set; }
 
     }
 }

@@ -248,6 +248,8 @@
     <Content Include="Views\ChineseLastName\Index.cshtml" />
     <Content Include="Views\ChineseLastName\Add.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
+    <Content Include="Views\QuestionAndAnswer\Index.cshtml" />
+    <Content Include="Views\QuestionAndAnswer\Add.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
