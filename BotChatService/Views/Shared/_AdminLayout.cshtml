@@ -1,0 +1,14 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h2>Welcome Back</h2>
+<ul>
+    <li>@Html.ActionLink("Chinese LastName Management", "Index", "ChineseLastName")</li>
+    <li>@Html.ActionLink("Users", "Index", "User")</li>
+    <li>@Html.ActionLink("Questions", "Index", "Question")</li>
+</ul>
+
+
+@RenderBody()

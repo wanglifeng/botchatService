@@ -126,12 +126,16 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\ChineseLastNameController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MessagesController.cs" />
     <Compile Include="Controllers\QuestionAndAnswerController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\ManageController.cs" />
+    <Compile Include="Models\UserModels.cs" />
     <Compile Include="Models\WeChatRequestMessage.cs" />
     <Compile Include="Models\WeChatResponseMessage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -237,6 +241,11 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Manage\Main.cshtml" />
+    <Content Include="Views\Shared\_AdminLayout.cshtml" />
+    <Content Include="Views\ChineseLastName\Index.cshtml" />
+    <Content Include="Views\ChineseLastName\Add.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -248,6 +257,10 @@
     <ProjectReference Include="..\ChatCore\ChatCore.csproj">
       <Project>{ad022630-7f05-4558-ab44-9324696c3461}</Project>
       <Name>ChatCore</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DomainCore\DomainCore.csproj">
+      <Project>{5e6faf41-96c3-44ad-9f82-d3579319c8d0}</Project>
+      <Name>DomainCore</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

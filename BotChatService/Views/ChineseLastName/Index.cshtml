@@ -1,0 +1,25 @@
+﻿@model List<DomainCore.Models.ChineseLastName>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Chinese LastNames List</h2>
+
+@Html.ActionLink("Add", "Add")
+<table>
+    <tr>
+        <th>Names</th>
+        <th>Management</th>
+    </tr>
+    @foreach (var t in Model)
+    {
+        <tr>
+            <td>@t.LastName</td>
+            <td>@Html.ActionLink("Edit", "Edit", new { Id = @t.Id })
+                @Html.ActionLink("Del", "Del", new { Id = @t.Id })
+            </td>
+        </tr>
+    }
+</table>
