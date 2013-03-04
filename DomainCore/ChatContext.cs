@@ -14,5 +14,8 @@ namespace DomainCore
         public ChatContext() : base("dbconn") { }
 
         public DbSet<ChineseLastName> ChineseLastNames { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<Models.Message> Messages { get; set; }
+
     }
 }

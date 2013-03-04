@@ -10,7 +10,8 @@ namespace ChatCore
 {
     public class TalkSession
     {
-        public ITalkSessionRepositry TalkSessionRepositry {
+        public ITalkSessionRepositry TalkSessionRepositry
+        {
             get
             {
                 return new TalkSessionRepositryByProgress();
@@ -19,9 +20,23 @@ namespace ChatCore
 
         public TalkSession(String from)
         {
+            
+
             State = new NewState();
             if (TalkSessionRepositry.Get(from) != null)
                 State = TalkSessionRepositry.Get(from).State;
+            else
+            {
+                IUserRepositary repo = new UserRepositaryByDB();
+                if (repo.GetByUserName(from) == null)
+                {
+                    repo.Save(new DomainCore.Models.User()
+                    {
+                        ClientId = "weichat",
+                        UserName = from
+                    });
+                }
+            }
 
             From = from;
         }

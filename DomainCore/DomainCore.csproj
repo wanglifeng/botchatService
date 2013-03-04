@@ -57,6 +57,7 @@
     <Compile Include="Filters\UnKnowFilter.cs" />
     <Compile Include="IChineseLastNameRepositary.cs" />
     <Compile Include="IJobRepositary.cs" />
+    <Compile Include="IMessageRepositry.cs" />
     <Compile Include="IUserRepositary.cs" />
     <Compile Include="JobLoader.cs" />
     <Compile Include="ICacheObject.cs" />
@@ -70,8 +71,13 @@
     <Compile Include="Migrations\201303041714458_update_ChineseLastname_class.Designer.cs">
       <DependentUpon>201303041714458_update_ChineseLastname_class.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201303041800216_add_class_user_messages.cs" />
+    <Compile Include="Migrations\201303041800216_add_class_user_messages.Designer.cs">
+      <DependentUpon>201303041800216_add_class_user_messages.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\ChineseLastName.cs" />
+    <Compile Include="Models\Message.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="MsgRepositry.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -87,6 +93,7 @@
     <Compile Include="TextMessage.cs" />
     <Compile Include="TextRequest.cs" />
     <Compile Include="TextResponse.cs" />
+    <Compile Include="UserRepositaryByDB.cs" />
     <Compile Include="WeiChatRequest.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -105,6 +112,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201303041714458_update_ChineseLastname_class.resx">
       <DependentUpon>201303041714458_update_ChineseLastname_class.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201303041800216_add_class_user_messages.resx">
+      <DependentUpon>201303041800216_add_class_user_messages.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

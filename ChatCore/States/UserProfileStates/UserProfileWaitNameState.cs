@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading;
+using DomainCore;
+using DomainCore.Models;
 
 namespace ChatCore.States.UserProfileStates
 {
@@ -26,6 +28,10 @@ namespace ChatCore.States.UserProfileStates
         {
             if (ChineseNameHelper.IsValid(msg.Content))
             {
+                IUserRepositary repo = new UserRepositaryByDB();
+                var user = repo.GetByUserName(session.From);
+                user.Name = msg.Content;
+                repo.Save(user);
                 session.State = new UserProfileState() { PreMsg = "输入成功" };
             }
         }
