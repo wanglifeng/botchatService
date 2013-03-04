@@ -36,7 +36,7 @@ namespace ChatCore.States.UserProfileStates
             get
             {
                 if (String.IsNullOrEmpty(_Content))
-                    return "啊欧，开始填写您的详细资料吧？";
+                    return "啊欧，开始填写您的详细资料吧？输入1就可以输入姓名啦";
                 else
                     return _Content;
             }
