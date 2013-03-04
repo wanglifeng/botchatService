@@ -39,6 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ChineseLastNameRepositaryByDB.cs" />
     <Compile Include="DB\Transaction.cs" />
     <Compile Include="DB\User.cs" />
     <Compile Include="DB\UserTable.cs" />
@@ -48,6 +49,7 @@
     <Compile Include="Filters\KeyWordFilter.cs" />
     <Compile Include="Filters\LocationFilters.cs" />
     <Compile Include="Filters\UnKnowFilter.cs" />
+    <Compile Include="IChineseLastNameRepositary.cs" />
     <Compile Include="IJobRepositary.cs" />
     <Compile Include="IUserRepositary.cs" />
     <Compile Include="JobLoader.cs" />

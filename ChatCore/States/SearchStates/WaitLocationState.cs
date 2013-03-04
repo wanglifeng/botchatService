@@ -5,7 +5,7 @@ using System.Text;
 
 namespace ChatCore.States.SearchStates
 {
-    class WaitLocationState : BaseSearchState
+    public class WaitLocationState : BaseSearchState
     {
         public override void HandleMsg(TalkSession session, Message msg)
         {

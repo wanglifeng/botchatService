@@ -7,7 +7,7 @@ using System.Threading;
 
 namespace ChatCore.States.UserProfileStates
 {
-    class UserProfileWaitNameState : BaseState
+    public class UserProfileWaitNameState : BaseState
     {
         private List<String> Msgs = null;
 
