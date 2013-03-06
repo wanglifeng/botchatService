@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using ChatCore.Models;
 
 namespace ChatCore.States.UserProfileStates
 {
@@ -39,6 +40,20 @@ namespace ChatCore.States.UserProfileStates
                     return "啊欧，开始填写您的详细资料吧？输入1就可以输入姓名啦";
                 else
                     return _Content;
+            }
+        }
+
+        public override ReplyMessage Message
+        {
+            get
+            {
+                return new ReplyTextMessage()
+                {
+                    Content = "开始填写您的详细资料吧？输入1就可以输入姓名啦",
+                    CreateDT = DateTime.Now,
+                    From = _TalkSession.Message.To,
+                    To = _TalkSession.Message.From
+                };
             }
         }
     }

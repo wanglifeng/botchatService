@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using DomainCore;
 using DomainCore.Models;
+using ChatCore.Models;
 
 namespace ChatCore.States
 {
@@ -21,7 +22,7 @@ namespace ChatCore.States
                     session.State = new SearchStartStates();
                 else if (msg.Content.ToLower() == "profile")
                     session.State = new UserProfileState();
-                else if (msg.Content.ToLower() == "hello2biz")
+                else if (msg.Content.ToLower() == "Hello2BizUser")
                     session.State = new NewUserState();
                 else
                 {
@@ -40,6 +41,19 @@ namespace ChatCore.States
                     return "1.Search 找工作\n 2 Profile 填写个人资料 \n3 提问";
                 else
                     return _Content;
+            }
+        }
+
+        public override Models.ReplyMessage Message
+        {
+            get {
+                return new ReplyTextMessage()
+                {
+                    Content = "1.Search 找工作\n 2 Profile 填写个人资料 \n3 提问",
+                    CreateDT = DateTime.Now,
+                    From = _TalkSession.Message.To,
+                    To = _TalkSession.Message.From
+                };
             }
         }
     }

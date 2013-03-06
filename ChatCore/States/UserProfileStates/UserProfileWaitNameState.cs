@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading;
 using DomainCore;
 using DomainCore.Models;
+using ChatCore.Models;
 
 namespace ChatCore.States.UserProfileStates
 {
@@ -43,6 +44,21 @@ namespace ChatCore.States.UserProfileStates
                 Random r = new Random();
                 Thread.Sleep(1000);
                 return Msgs[r.Next(0, Msgs.Count)];
+            }
+        }
+
+        public override ReplyMessage Message
+        {
+            get {
+                Random r = new Random();
+
+                return new ReplyTextMessage()
+                {
+                    Content = Msgs[r.Next(0, Msgs.Count)],
+                    CreateDT = DateTime.Now,
+                    From = _TalkSession.Message.To,
+                    To = _TalkSession.Message.From
+                };
             }
         }
     }

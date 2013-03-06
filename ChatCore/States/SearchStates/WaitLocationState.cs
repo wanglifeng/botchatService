@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using ChatCore.Models;
 
 namespace ChatCore.States.SearchStates
 {
@@ -23,6 +24,20 @@ namespace ChatCore.States.SearchStates
         public override string Content
         {
             get { return "请输入地址"; }
+        }
+
+        public override Models.ReplyMessage Message
+        {
+            get
+            {
+                return new ReplyTextMessage()
+                {
+                    Content = "请输入地址",
+                    CreateDT = DateTime.Now,
+                    From = _TalkSession.Message.To,
+                    To = _TalkSession.Message.From
+                };
+            }
         }
     }
 }

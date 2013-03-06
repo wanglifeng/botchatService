@@ -11,19 +11,16 @@ namespace ChatCore.States.SearchStates
     {
         public override void HandleMsg(TalkSession session, Message msg)
         {
-            if (!String.IsNullOrEmpty(msg.Content))
-            {
-                if (msg.Content.ToLower() == "Profile")
-                    session.State = new UserProfileState();
-                else
-                    session.State = new WaitLocationState()
-                    {
-                        Search = new JobSearchModel()
-                            {
-                                Keyword = msg.Content
-                            }
-                    };
-            }
+            if (msg.Content.ToLower() == "Profile")
+                session.State = new UserProfileState();
+            else
+                session.State = new WaitLocationState()
+                {
+                    Search = new JobSearchModel()
+                        {
+                            Keyword = msg.Content
+                        }
+                };
         }
 
         public override string Content
@@ -31,6 +28,20 @@ namespace ChatCore.States.SearchStates
             get
             {
                 return "开始输入关键字找工作吧？";
+            }
+        }
+
+        public override Models.ReplyMessage Message
+        {
+            get
+            {
+                return new ReplyTextMessage()
+                {
+                    Content = "开始输入关键字找工作吧?没啥写的就敲个空格点发送吧？",
+                    CreateDT = DateTime.Now,
+                    From = _TalkSession.Message.To,
+                    To = _TalkSession.Message.From
+                };
             }
         }
     }

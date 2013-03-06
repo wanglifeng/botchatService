@@ -1,4 +1,5 @@
-﻿using DomainCore;
+﻿using ChatCore.Models;
+using DomainCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -52,6 +53,36 @@ namespace ChatCore.States.SearchStates
                 }
                 sb.AppendLine("输入1到下一页");
                 return sb.ToString();
+            }
+        }
+
+        public override ReplyMessage Message
+        {
+            get
+            {
+                IJobRepositary repositary = new JobRepositaryByAPI();
+                var results = repositary.Search(new JobSearchQuery()
+                {
+                    KeyWord = Search.Keyword,
+                    Location = Search.Location,
+                    PageSize = 3,
+                    StartIndex = Search.PageIndex * 3
+                });
+
+
+                return new ReplyJobResultMessage()
+                {
+                    CreateDT = DateTime.Now,
+                    From = _TalkSession.Message.To,
+                    To = _TalkSession.Message.From,
+                    Results = results.Select(t => new JobResult()
+                    {
+                        DID = t.DID,
+                        CompanyName = t.Company,
+                        Description = t.Detail,
+                        Title = t.JobTitle
+                    }).ToList()
+                };
             }
         }
     }
