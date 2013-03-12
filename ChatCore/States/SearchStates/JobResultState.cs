@@ -70,7 +70,7 @@ namespace ChatCore.States.SearchStates
 
                 if (results.Count > 0)
                 {
-                    return new ReplyJobResultMessage()
+                    var r = new ReplyJobResultMessage()
                     {
                         CreateDT = DateTime.Now,
                         From = _TalkSession.To,
@@ -85,6 +85,14 @@ namespace ChatCore.States.SearchStates
                             CompanyImageURL = t.CompanyImageURL
                         }).ToList()
                     };
+
+                    r.Results.Add(new JobResult()
+                    {
+                        Title = "输入1查看下一页，2查看上一页，点击查看列表",
+                        JobDetailsURL = string.Format("http://mobile.careerbuilder.com.cn/seeker/search?go=1&kw={0}&loc={1}", Search.Keyword, Search.Location)
+                    });
+
+                    return r;
                 }
                 else
                 {
