@@ -13,5 +13,8 @@ namespace DomainCore
         public String Company { get; set; }
         public String Location { get; set; }
         public DateTime PostedDate { get; set; }
+
+        public String CompanyImageURL { get; set; }
+        public String JobDetailsURL { get; set; }
     }
 }

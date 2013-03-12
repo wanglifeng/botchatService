@@ -15,8 +15,8 @@ namespace DomainCore
 
         public IList<JobSearchResult> Search(JobSearchQuery query)
         {
-            
-                return SearchFromAPI(query);
+
+            return SearchFromAPI(query);
 
         }
 
@@ -36,7 +36,9 @@ namespace DomainCore
                 Company = t.Company,
                 DID = t.DID,
                 Location = t.Location,
-                PostedDate = DateTime.Parse(t.PostedDate)
+                PostedDate = DateTime.Parse(t.PostedDate),
+                CompanyImageURL = t.CompanyImageURL,
+                JobDetailsURL = t.JobDetailsURL
 
             }).ToList();
         }
