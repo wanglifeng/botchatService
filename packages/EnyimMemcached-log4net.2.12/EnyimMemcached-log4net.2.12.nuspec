@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>EnyimMemcached-log4net</id>
+    <version>2.12</version>
+    <title>EnyimMemcached-log4net</title>
+    <authors>Attila Kiskó</authors>
+    <owners>Attila Kiskó</owners>
+    <licenseUrl>http://www.apache.org/licenses/LICENSE-2.0</licenseUrl>
+    <projectUrl>https://github.com/enyim/EnyimMemcached</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>log4net based logging adapter for the Enyim Memcached library.</description>
+    <releaseNotes />
+    <copyright />
+    <language />
+    <tags>memcached enyim cache caching log4net</tags>
+    <dependencies>
+      <dependency id="log4net" />
+    </dependencies>
+    <references>
+      <reference file="Enyim.Caching.Log4NetAdapter.dll" />
+    </references>
+  </metadata>
+</package>

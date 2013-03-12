@@ -58,6 +58,9 @@
     <Compile Include="Data\ITalkSessionRepositry.cs" />
     <Compile Include="Data\TalkSessionRepositryByProgress.cs" />
     <Compile Include="Message.cs" />
+    <Compile Include="MessageHandler.cs" />
+    <Compile Include="MessageReplyContext.cs" />
+    <Compile Include="MessageRequestContext.cs" />
     <Compile Include="Models\JobResult.cs" />
     <Compile Include="Models\JobSearchModel.cs" />
     <Compile Include="Models\ReplyMessage.cs" />

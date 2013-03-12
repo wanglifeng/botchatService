@@ -56,8 +56,8 @@ namespace ChatCore.States.UserProfileStates
                 {
                     Content = Msgs[r.Next(0, Msgs.Count)],
                     CreateDT = DateTime.Now,
-                    From = _TalkSession.Message.To,
-                    To = _TalkSession.Message.From
+                    From = _TalkSession.To,
+                    To = _TalkSession.From
                 };
             }
         }

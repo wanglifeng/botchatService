@@ -45,7 +45,6 @@ namespace ChatCore.States.SearchStates
                     PageSize = 3,
                     StartIndex = Search.PageIndex * 3
                 });
-                //return string.Format("KeyWord:{0},Location{1},Page:{2}", Search.Keyword, Search.Location, Search.PageIndex);
                 var sb = new StringBuilder();
                 foreach (var t in results)
                 {
@@ -69,20 +68,32 @@ namespace ChatCore.States.SearchStates
                     StartIndex = Search.PageIndex * 3
                 });
 
-
-                return new ReplyJobResultMessage()
+                if (results.Count > 0)
                 {
-                    CreateDT = DateTime.Now,
-                    From = _TalkSession.Message.To,
-                    To = _TalkSession.Message.From,
-                    Results = results.Select(t => new JobResult()
+                    return new ReplyJobResultMessage()
                     {
-                        DID = t.DID,
-                        CompanyName = t.Company,
-                        Description = t.Detail,
-                        Title = t.JobTitle
-                    }).ToList()
-                };
+                        CreateDT = DateTime.Now,
+                        From = _TalkSession.To,
+                        To = _TalkSession.From,
+                        Results = results.Select(t => new JobResult()
+                        {
+                            DID = t.DID,
+                            CompanyName = t.Company,
+                            Description = t.Detail,
+                            Title = t.JobTitle
+                        }).ToList()
+                    };
+                }
+                else
+                {
+                    return new ReplyTextMessage()
+                    {
+                        CreateDT = DateTime.Now,
+                        From = _TalkSession.To,
+                        To = _TalkSession.From,
+                        Content = "啊欧，没有找到工作。。。。。重新开始搜索吧~~"
+                    };
+                }
             }
         }
     }

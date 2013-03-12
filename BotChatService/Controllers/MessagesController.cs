@@ -1,10 +1,12 @@
-﻿using BotChatService.Models;
+﻿using BotChatService.App_Start;
+using BotChatService.Models;
 using ChatCore;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Web.Mvc;
+using Ninject;
 
 namespace BotChatService.Controllers
 {
@@ -26,22 +28,24 @@ namespace BotChatService.Controllers
             }
             WeChatRequestMessage msg = WeChatRequestMessage.CreateFromXml(xmlContent);
 
-            TalkSession talkSession = new TalkSession(msg.FromUserName);
-            talkSession.Request(new Message()
+
+            MessageHandler handler = new MessageHandler();
+            var request = NinjectWebCommon.kernel.Get<MessageRequestContext>();
+
+            var response = new MessageReplyContext();
+
+            request.MessageRequest = new ChatCore.Message()
             {
                 Content = (msg as WeChatRequestTextMessage).Content,
                 From = msg.FromUserName,
                 SentTime = msg.CreateTime,
                 To = msg.ToUserName
-            });
-
-
-            WeChatResponseMessage rsp = new WeChatResponseTextMessage()
-            {
-                FromUser = msg.ToUserName,
-                ToUser = msg.FromUserName,
-                Content = talkSession.Message.Content
             };
+            handler.HandleRequest(request, response);
+
+
+            WeChatResponseMessage rsp = WeChatResponseMessage.GetMessage(response.ReplyMessage);
+
 
             string xmlResponseContent = rsp.ConvertToWeiChatResponse();
 

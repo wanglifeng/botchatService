@@ -34,8 +34,8 @@ namespace ChatCore.States.SearchStates
                 {
                     Content = "请输入地址",
                     CreateDT = DateTime.Now,
-                    From = _TalkSession.Message.To,
-                    To = _TalkSession.Message.From
+                    From = _TalkSession.To,
+                    To = _TalkSession.From
                 };
             }
         }

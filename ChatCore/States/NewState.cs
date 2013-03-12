@@ -51,8 +51,8 @@ namespace ChatCore.States
                 {
                     Content = "1.Search 找工作\n 2 Profile 填写个人资料 \n3 提问",
                     CreateDT = DateTime.Now,
-                    From = _TalkSession.Message.To,
-                    To = _TalkSession.Message.From
+                    From = _TalkSession.To,
+                    To = _TalkSession.From
                 };
             }
         }

@@ -39,8 +39,8 @@ namespace ChatCore.States.SearchStates
                 {
                     Content = "开始输入关键字找工作吧?没啥写的就敲个空格点发送吧？",
                     CreateDT = DateTime.Now,
-                    From = _TalkSession.Message.To,
-                    To = _TalkSession.Message.From
+                    From = _TalkSession.LastMessage.To,
+                    To = _TalkSession.LastMessage.From
                 };
             }
         }
