@@ -51,8 +51,8 @@ namespace ChatCore.States.UserProfileStates
                 {
                     Content = "开始填写您的详细资料吧？输入1就可以输入姓名啦",
                     CreateDT = DateTime.Now,
-                    From = _TalkSession.Message.To,
-                    To = _TalkSession.Message.From
+                    From = _TalkSession.To,
+                    To = _TalkSession.From
                 };
             }
         }
