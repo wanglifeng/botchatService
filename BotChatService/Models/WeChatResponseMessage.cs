@@ -125,11 +125,11 @@ namespace BotChatService.Models
                 xw.WriteEndElement();
 
                 xw.WriteStartElement("PicUrl");
-                xw.WriteCData(t.CompanyLogo);
+                xw.WriteCData(t.CompanyImageURL);
                 xw.WriteEndElement();
 
                 xw.WriteStartElement("Url");
-                xw.WriteCData(t.Url);
+                xw.WriteCData(t.JobDetailsURL);
                 xw.WriteEndElement();
 
                 xw.WriteEndElement();

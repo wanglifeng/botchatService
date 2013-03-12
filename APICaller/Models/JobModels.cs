@@ -30,9 +30,10 @@ namespace APICaller.Models
             public String Company { get; set; }
             public String JobTitle { get; set; }
             public String DescriptionTeaser { get; set; }
-            public string JobDetailURL { get; set; }
+            public string JobDetailsURL { get; set; }
             public String Location { get; set; }
             public String PostedDate { get; set; }
+            public String CompanyImageURL { get; set; }
         }
     }
     #endregion

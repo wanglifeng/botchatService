@@ -80,7 +80,9 @@ namespace ChatCore.States.SearchStates
                             DID = t.DID,
                             CompanyName = t.Company,
                             Description = t.Detail,
-                            Title = t.JobTitle
+                            Title = t.JobTitle,
+                            JobDetailsURL = t.JobDetailsURL,
+                            CompanyImageURL = t.CompanyImageURL
                         }).ToList()
                     };
                 }
