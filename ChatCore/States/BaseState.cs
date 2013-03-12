@@ -1,4 +1,5 @@
 ﻿using ChatCore.Models;
+using ChatCore.States.SearchStates;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,7 +20,14 @@ namespace ChatCore.States
         {
             _TalkSession = session;
             session.LastMessage = msg;
-            Handle(session, msg);
+
+            if (msg.Content.ToLower() == "search")
+                session.State = new SearchStartStates();
+            else if (msg.Content.ToLower() == "profile")
+                session.State = new UserProfileStates.UserProfileState();
+            else
+                Handle(session, msg);
+            
             session.State._TalkSession = session;
         }
 
