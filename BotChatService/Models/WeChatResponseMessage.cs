@@ -112,6 +112,8 @@ namespace BotChatService.Models
 
             xw.WriteStartElement("Articles");
 
+            Results = Results.OrderByDescending(t => t.CompanyImageURL).ToList();
+
             foreach (var t in Results)
             {
                 xw.WriteStartElement("item");
@@ -129,7 +131,14 @@ namespace BotChatService.Models
                 xw.WriteEndElement();
 
                 xw.WriteStartElement("Url");
-                xw.WriteCData(t.JobDetailsURL);
+                if (t.JobDetailsURL.IndexOf("?") > -1)
+                {
+                    xw.WriteCData(t.JobDetailsURL + "&siteid=wechat");
+                }
+                else
+                {
+                    xw.WriteCData(t.JobDetailsURL + "?siteid=wechat");
+                }
                 xw.WriteEndElement();
 
                 xw.WriteEndElement();
