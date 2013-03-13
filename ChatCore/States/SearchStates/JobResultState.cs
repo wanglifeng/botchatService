@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using ChatCore.Patterns;
 
 namespace ChatCore.States.SearchStates
 {
@@ -13,23 +14,22 @@ namespace ChatCore.States.SearchStates
         {
             if (!String.IsNullOrEmpty(msg.Content))
             {
-                if (msg.Content == "1")
+                if (msg.Content.IsGoToNextPage())
                 {
                     Search.PageIndex++;
                     session.State = new JobResultState() { Search = Search };
                 }
-                else if (msg.Content == "2")
+                else if (msg.Content.IsGoToPrePage())
                 {
                     Search.PageIndex--;
                     session.State = new JobResultState() { Search = Search };
                 }
+                else if (msg.Content.IsSearchStart())
+                    session.State = new SearchStartStates();
+                else if (msg.Content.IsUserProfileStart())
+                    session.State = new UserProfileStates.UserProfileState();
                 else
-                {
-                    if (msg.Content == "Search")
-                        session.State = new SearchStartStates();
-                    else if (msg.Content == "profile")
-                        session.State = new UserProfileStates.UserProfileState();
-                }
+                    session.State = new NewState();
             }
         }
 
@@ -88,7 +88,7 @@ namespace ChatCore.States.SearchStates
 
                     r.Results.Add(new JobResult()
                     {
-                        Title = "输入1查看下一页，2查看上一页，点击查看列表",
+                        Title = "输入1查看下一页，2查看上一页，点击可以查看列表",
                         JobDetailsURL = string.Format("http://mobile.careerbuilder.com.cn/seeker/search?go=1&kw={0}&loc={1}", Search.Keyword, Search.Location)
                     });
 

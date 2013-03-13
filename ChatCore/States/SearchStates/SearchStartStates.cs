@@ -35,9 +35,17 @@ namespace ChatCore.States.SearchStates
         {
             get
             {
+                List<String> str = new List<string>
+                {
+                    "开始输入关键字找工作吧",
+                    "你想找哪个公司的工作？",
+                    "你想在哪个公司工作？",
+                    "你的期望职位是什么"
+                };
+                Random r = new Random(DateTime.Now.Millisecond);
                 return new ReplyTextMessage()
                 {
-                    Content = "开始输入关键字找工作吧?没啥写的就敲个空格点发送吧？",
+                    Content = str[r.Next(0, str.Count - 1)],
                     CreateDT = DateTime.Now,
                     From = _TalkSession.LastMessage.To,
                     To = _TalkSession.LastMessage.From
