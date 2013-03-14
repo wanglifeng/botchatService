@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>NewRelic.Agent.Api.x86</id>
+    <version>2.1.2.472</version>
+    <title>NewRelic.Agent.Api.x86</title>
+    <authors>Nick Floyd</authors>
+    <owners>Nick Floyd</owners>
+    <projectUrl>https://newrelic.com/docs/dotnet/AgentApi</projectUrl>
+    <iconUrl>http://newrelic.com/images/avatar-newrelic.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>The New Relic .NET Agent API supports custom error and metric reporting, and custom transaction parameters. If the agent is not installed or is disabled, method invocations of this API will have no effect. You can find more information about the NewRelic.Agent.Api at http://newrelic.com/docs/dotnet/AgentApi.</description>
+    <summary>The New Relic .NET Agent API supports custom error and metric reporting, and custom transaction parameters. This is the 32-bit version of the package. For the 64-bit build, see  NewRelic.Agent.Api.x64</summary>
+    <releaseNotes>v2.1.2.472 -  updates to latest agent release</releaseNotes>
+    <copyright />
+    <language>en-US</language>
+    <tags>New Relic</tags>
+    <references>
+      <reference file="NewRelic.Api.Agent.dll" />
+    </references>
+  </metadata>
+</package>
