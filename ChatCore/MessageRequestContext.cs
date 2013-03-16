@@ -1,10 +1,11 @@
-﻿using ChatCore.Data;
-using ChatCore.Models;
+﻿using ChatCore.Models;
 using Ninject;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+
+using Me.WLF.Model;
 
 namespace ChatCore
 {
@@ -15,7 +16,7 @@ namespace ChatCore
         [Inject]
         public ITalkSessionRepositry TalkSessionRepositry { get; set; }
 
-        public Message MessageRequest { get; set; }
+        public RequestMessage MessageRequest { get; set; }
         public TalkSession Session
         {
             get

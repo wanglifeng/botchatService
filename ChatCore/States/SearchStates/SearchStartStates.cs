@@ -4,13 +4,16 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Me.WLF.Model;
 
 namespace ChatCore.States.SearchStates
 {
     public class SearchStartStates : BaseSearchState
     {
-        public override void HandleMsg(TalkSession session, Message msg)
+        public override void HandleMsg(TalkSession session, RequestMessage message)
         {
+            var msg = message as RequestTextMessage;
+
             if (msg.Content.ToLower() == "Profile")
                 session.State = new UserProfileState();
             else
@@ -23,15 +26,7 @@ namespace ChatCore.States.SearchStates
                 };
         }
 
-        public override string Content
-        {
-            get
-            {
-                return "开始输入关键字找工作吧？";
-            }
-        }
-
-        public override Models.ReplyMessage Message
+        public override ReplyMessage Message
         {
             get
             {
@@ -46,7 +41,7 @@ namespace ChatCore.States.SearchStates
                 return new ReplyTextMessage()
                 {
                     Content = str[r.Next(0, str.Count - 1)],
-                    CreateDT = DateTime.Now,
+                    SentTime = DateTime.Now,
                     From = _TalkSession.LastMessage.To,
                     To = _TalkSession.LastMessage.From
                 };

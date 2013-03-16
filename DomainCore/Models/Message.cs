@@ -18,5 +18,7 @@ namespace DomainCore.Models
         public String Content { get; set; }
         [Required]
         public DateTime CreateDT { get; set; }
+
+       
     }
 }

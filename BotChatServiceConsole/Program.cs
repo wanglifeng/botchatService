@@ -4,14 +4,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Ninject;
-using Enyim.Caching;
-using Enyim.Caching.Memcached;
-using Enyim.Caching.Configuration;
-//using Memcached.ClientLibrary;
-//using Enyim.Caching;
 using System.Net;
 using DomainCore;
-using ChatCore.Data;
+using Me.WLF.IDAL;
+using Me.WLF.Model;
+using Me.WLF.DALByStatic;
+using Newtonsoft.Json;
+using ChatCore.Patterns;
 
 namespace ChatCoreConsole
 {
@@ -20,10 +19,13 @@ namespace ChatCoreConsole
         public static void Main(String[] args)
         {
             var kernel = new StandardKernel();
-            kernel.Bind<IUserRepositary>().To<UserRepositaryByStaticClass>();
+            kernel.Bind<IUserRepositary>().To<UserRepositaryDALByStatic>();
             kernel.Bind<ITalkSessionRepositry>().To<TalkSessionRepositryByStaticClass>();
             kernel.Bind<TalkSession>().ToSelf();
             kernel.Bind<MessageRequestContext>().ToSelf();
+            kernel.Bind<IPatternManager>().To<PatternManager>();
+
+            Console.WriteLine((new Me.WLF.DALByStatic.FeedBackRepositaryByStatic()).GetType().Assembly);
 
             string msg = Console.ReadLine();
             MessageHandler handler = new MessageHandler();
@@ -34,7 +36,7 @@ namespace ChatCoreConsole
             while (!string.IsNullOrEmpty(msg))
             {
                 request = kernel.Get<MessageRequestContext>();
-                request.MessageRequest = new ChatCore.Message()
+                request.MessageRequest = new RequestTextMessage()
                 {
                     From = "wanglifeng",
                     To = "weichat",
@@ -43,23 +45,10 @@ namespace ChatCoreConsole
                 };
                 handler.HandleRequest(request, response);
 
-                Console.WriteLine(response.ReplyMessage.ToString());
+                Console.WriteLine(JsonConvert.SerializeObject(response.ReplyMessage));
                 msg = Console.ReadLine();
 
             }
-
-            //string msgConent = Console.ReadLine();
-            //while (!String.IsNullOrEmpty(msgConent))
-            //{
-            //    session.Request(new Message() { From = "wanglifeng", To = "ROBOT", SentTime = DateTime.Now, Content = msgConent });
-            //    Console.WriteLine(session.ReplyMessage.ToString());
-            //    msgConent = Console.ReadLine();
-            //}
-        }
-
-        static void client_NodeFailed(IMemcachedNode obj)
-        {
-
         }
     }
 }

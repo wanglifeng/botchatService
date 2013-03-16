@@ -44,22 +44,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdminRepositaryByDB.cs" />
     <Compile Include="ChatContext.cs" />
     <Compile Include="ChineseLastNameRepositaryByDB.cs" />
     <Compile Include="DB\Transaction.cs" />
     <Compile Include="DB\User.cs" />
     <Compile Include="DB\UserTable.cs" />
+    <Compile Include="FeedBackRepositaryByDB.cs" />
     <Compile Include="Filters\BeginTransaction.cs" />
     <Compile Include="Filters\ConstContentFilter.cs" />
     <Compile Include="Filters\IFilter.cs" />
     <Compile Include="Filters\KeyWordFilter.cs" />
     <Compile Include="Filters\LocationFilters.cs" />
     <Compile Include="Filters\UnKnowFilter.cs" />
-    <Compile Include="IChineseLastNameRepositary.cs" />
     <Compile Include="IJobRepositary.cs" />
     <Compile Include="IMessageRepositry.cs" />
     <Compile Include="IQuestionRepositary.cs" />
-    <Compile Include="IUserRepositary.cs" />
     <Compile Include="JobLoader.cs" />
     <Compile Include="ICacheObject.cs" />
     <Compile Include="JobRepositaryByAPI.cs" />
@@ -80,8 +80,18 @@
     <Compile Include="Migrations\201303041838444_add_class_questions.Designer.cs">
       <DependentUpon>201303041838444_add_class_questions.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201303160936009_Add_FeedBack_class.cs" />
+    <Compile Include="Migrations\201303160936009_Add_FeedBack_class.Designer.cs">
+      <DependentUpon>201303160936009_Add_FeedBack_class.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201303161102354_Add_FeedBack_class1.cs" />
+    <Compile Include="Migrations\201303161102354_Add_FeedBack_class1.Designer.cs">
+      <DependentUpon>201303161102354_Add_FeedBack_class1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Admin.cs" />
     <Compile Include="Models\ChineseLastName.cs" />
+    <Compile Include="Models\FeedBack.cs" />
     <Compile Include="Models\Message.cs" />
     <Compile Include="Models\Question.cs" />
     <Compile Include="Models\User.cs" />
@@ -97,9 +107,6 @@
     <Compile Include="Repositaries\Translators\Job\PageNumberTranslator.cs" />
     <Compile Include="SearchTransaction.cs" />
     <Compile Include="SHA1Algorithm.cs" />
-    <Compile Include="TextMessage.cs" />
-    <Compile Include="TextRequest.cs" />
-    <Compile Include="TextResponse.cs" />
     <Compile Include="UserRepositaryByDB.cs" />
     <Compile Include="WeiChatRequest.cs" />
   </ItemGroup>
@@ -107,6 +114,14 @@
     <ProjectReference Include="..\APICaller\APICaller.csproj">
       <Project>{A1C0F55E-CEF4-4E01-8B95-10ED7C47A310}</Project>
       <Name>APICaller</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IDAL\IDAL.csproj">
+      <Project>{c49592a4-1c4a-423a-8f24-f9ede5e99f5b}</Project>
+      <Name>IDAL %28IDAL\IDAL%29</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Model\Model.csproj">
+      <Project>{412c4b83-ff42-4949-8211-defe85a9b36d}</Project>
+      <Name>Model</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -125,6 +140,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201303041838444_add_class_questions.resx">
       <DependentUpon>201303041838444_add_class_questions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201303160936009_Add_FeedBack_class.resx">
+      <DependentUpon>201303160936009_Add_FeedBack_class.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201303161102354_Add_FeedBack_class1.resx">
+      <DependentUpon>201303161102354_Add_FeedBack_class1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

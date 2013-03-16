@@ -1,4 +1,5 @@
 ﻿using ChatCore.Models;
+using Me.WLF.Model;
 using System;
 using System.Collections.Generic;
 using System.IO;

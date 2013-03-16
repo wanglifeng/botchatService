@@ -7,12 +7,15 @@ using System.Threading;
 using DomainCore;
 using DomainCore.Models;
 using ChatCore.Models;
+using Me.WLF.Model;
+using Me.WLF.IDAL;
 
 namespace ChatCore.States.UserProfileStates
 {
     public class UserProfileWaitNameState : BaseState
     {
         private List<String> Msgs = null;
+        private IUserRepositary UserRepositary { get; set; }
 
         public UserProfileWaitNameState()
         {
@@ -25,37 +28,31 @@ namespace ChatCore.States.UserProfileStates
             };
         }
 
-        public override void Handle(TalkSession session, Message msg)
+        public override void Handle(TalkSession session, RequestMessage msg)
         {
-            if (ChineseNameHelper.IsValid(msg.Content))
+            if (msg is RequestTextMessage)
             {
-                IUserRepositary repo = new UserRepositaryByDB();
-                var user = repo.GetByUserName(session.From);
-                user.Name = msg.Content;
-                repo.Save(user);
-                session.State = new UserProfileState() { PreMsg = "输入成功" };
-            }
-        }
-
-        public override string Content
-        {
-            get
-            {
-                Random r = new Random();
-                Thread.Sleep(1000);
-                return Msgs[r.Next(0, Msgs.Count)];
+                var m = msg as RequestTextMessage;
+                if (PatternManager.IsChineseLastName(m.Content))
+                {
+                    var user = UserRepositary.GetByUserName(session.From);
+                    user.Name = m.Content;
+                    UserRepositary.Save(user);
+                    session.State = new UserProfileState() { PreMsg = "输入成功" };
+                }
             }
         }
 
         public override ReplyMessage Message
         {
-            get {
+            get
+            {
                 Random r = new Random();
 
                 return new ReplyTextMessage()
                 {
                     Content = Msgs[r.Next(0, Msgs.Count)],
-                    CreateDT = DateTime.Now,
+                    SentTime = DateTime.Now,
                     From = _TalkSession.To,
                     To = _TalkSession.From
                 };

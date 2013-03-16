@@ -1,0 +1,11 @@
+﻿.menu {
+    width:100%;
+}
+    .menu li {
+        width: 25%;
+        float:left;
+        list-style:none;
+    }
+.clearBoth {
+    clear: both;
+}
