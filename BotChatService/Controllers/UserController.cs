@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using DomainCore;
+using Me.WLF.IDAL;
 
 namespace BotChatService.Controllers
 {
@@ -17,6 +18,15 @@ namespace BotChatService.Controllers
             IUserRepositary repo = new UserRepositaryByDB();
             return View(repo.List());
         }
+
+        public ActionResult Del(int id)
+        {
+            IUserRepositary repo = new UserRepositaryByDB();
+            repo.Del(id);
+            return RedirectToAction("Index");
+        }
+
+        
 
     }
 }

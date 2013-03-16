@@ -1,8 +1,10 @@
-﻿using DomainCore.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+
+using Me.WLF.IDAL;
+using Me.WLF.Model;
 
 namespace DomainCore
 {
@@ -16,8 +18,6 @@ namespace DomainCore
                 {
                     return context.ChineseLastNames.Select(t => t.LastName).ToList();
                 }
-                //string names = "张 王 李 赵";
-                //return names.Split(new char[] { ' ' }).ToList();
             }
         }
 
@@ -26,7 +26,12 @@ namespace DomainCore
         {
             using (ChatContext context = new ChatContext())
             {
-                return context.ChineseLastNames.ToList();
+                var names = new List<ChineseLastName>();
+                context.ChineseLastNames.ToList().ForEach(t =>
+                    {
+                        names.Add((ChineseLastName)t);
+                    });
+                return names;
             }
         }
 
@@ -35,7 +40,27 @@ namespace DomainCore
         {
             using (ChatContext context = new ChatContext())
             {
-                context.ChineseLastNames.Add(new ChineseLastName() { LastName = name.LastName });
+                var n = context.ChineseLastNames.SingleOrDefault(t => t.Id == name.Id);
+                if (n == null)
+                {
+                    context.ChineseLastNames.Add((DomainCore.Models.ChineseLastName)name);
+                }
+                else
+                {
+                    n.LastName = n.LastName;
+                }
+                context.SaveChanges();
+            }
+        }
+
+
+        public void Del(int id)
+        {
+            using (ChatContext context = new ChatContext())
+            {
+                var name = context.ChineseLastNames.SingleOrDefault(t => t.Id == id);
+                if (name != null)
+                    context.ChineseLastNames.Remove(name);
                 context.SaveChanges();
             }
         }

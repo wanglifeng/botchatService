@@ -9,44 +9,53 @@ using DomainCore.Models;
 using ChatCore.Models;
 using ChatCore.Patterns;
 
+using Me.WLF.Model;
+using Me.WLF.IDAL;
 namespace ChatCore.States
 {
     public class NewState : BaseState
     {
-        private String _Content = string.Empty;
+        private IFeedBackRepositary _FeedBackRepositary;
 
-        public override void Handle(TalkSession session, Message msg)
+        public IFeedBackRepositary FeedBackRepositary
         {
-            if (!String.IsNullOrEmpty(msg.Content))
+            get
             {
-                if (msg.Content.IsSearchStart())
-                    session.State = new SearchStartStates();
-                else if (msg.Content.IsUserProfileStart())
-                    session.State = new UserProfileState();
-                else if (msg.Content.IsNewUser())
-                    session.State = new NewUserState();
-                else
+                if (_FeedBackRepositary == null)
                 {
-                    //IQuestionRepositary repo = new QuestionRepostaryByDB();
-                    //Question q = repo.GetByQuestion(msg.Content);
-                    //if (q != null)
-                    //    _Content = q.Answer;
+                    var feedBackRepositaryClassName = System.Configuration.ConfigurationManager.AppSettings["IFeedBack"];
+                    Console.WriteLine(feedBackRepositaryClassName);
+                    _FeedBackRepositary = Activator.CreateInstance(Type.GetType(feedBackRepositaryClassName)) as IFeedBackRepositary;
+                }
+                return _FeedBackRepositary;
+            }
+        }
+
+        public override void Handle(TalkSession session, RequestMessage msg)
+        {
+            if (msg is RequestTextMessage)
+            {
+                var m = msg as RequestTextMessage;
+                if (PatternManager.IsSearchStartPattern(m.Content))
+                    session.State = new SearchStartStates();
+                else if (PatternManager.IsUserProfileStart(m.Content))
+                    session.State = new UserProfileState();
+                else if (PatternManager.IsNewRegisterUser(m.Content))
+                    session.State = new NewUserState();
+                else if (PatternManager.IsFeedBackPattern(m.Content))
+                {
+                    FeedBackRepositary.Save(new Me.WLF.Model.FeedBack()
+                    {
+                        UserName = msg.From,
+                        ClientId = "wechat",
+                        Content = m.Content
+                    });
+                    PreMsg = "谢谢您的反馈";
                 }
             }
         }
 
-        public override string Content
-        {
-            get
-            {
-                if (String.IsNullOrEmpty(_Content))
-                    return "1.Search 找工作\n 2 Profile 填写个人资料 \n3 提问";
-                else
-                    return _Content;
-            }
-        }
-
-        public override Models.ReplyMessage Message
+        public override ReplyMessage Message
         {
             get
             {
@@ -58,10 +67,13 @@ namespace ChatCore.States
                     "输入'资料'看看有什么新发现？"
                 };
                 Random r = new Random(DateTime.Now.Millisecond);
+                string c = string.Empty;
+                if (!String.IsNullOrEmpty(PreMsg))
+                    c = PreMsg + "\n";
                 return new ReplyTextMessage()
                 {
-                    Content = str[r.Next(0, str.Count - 1)],
-                    CreateDT = DateTime.Now,
+                    Content = c + str[r.Next(0, str.Count - 1)],
+                    SentTime = DateTime.Now,
                     From = _TalkSession.To,
                     To = _TalkSession.From
                 };

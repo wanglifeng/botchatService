@@ -3,13 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using ChatCore.Models;
+using Me.WLF.Model;
 
 namespace ChatCore.States.SearchStates
 {
     public class WaitLocationState : BaseSearchState
     {
-        public override void HandleMsg(TalkSession session, Message msg)
+        public override void HandleMsg(TalkSession session, RequestMessage message)
         {
+            var msg = message as RequestTextMessage;
             if (!String.IsNullOrEmpty(msg.Content))
             {
                 Search.Location = msg.Content;
@@ -21,12 +23,7 @@ namespace ChatCore.States.SearchStates
             }
         }
 
-        public override string Content
-        {
-            get { return "请输入地址"; }
-        }
-
-        public override Models.ReplyMessage Message
+        public override ReplyMessage Message
         {
             get
             {
@@ -41,7 +38,7 @@ namespace ChatCore.States.SearchStates
                 return new ReplyTextMessage()
                 {
                     Content = str[r.Next(0, str.Count - 1)],
-                    CreateDT = DateTime.Now,
+                    SentTime = DateTime.Now,
                     From = _TalkSession.To,
                     To = _TalkSession.From
                 };

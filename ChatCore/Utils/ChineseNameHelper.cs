@@ -3,20 +3,16 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Ninject;
+using Me.WLF.IDAL;
 
 namespace ChatCore.Utils
 {
     class ChineseNameHelper
     {
-        private static IChineseLastNameRepositary ChineseLastNameRepositary
-        {
-            get
-            {
-                return new ChineseLastNameRepositaryByDB();
-            }
-        }
+        public IChineseLastNameRepositary ChineseLastNameRepositary { get; set; }
 
-        public static bool IsValid(String name)
+        public bool IsValid(String name)
         {
             if (!String.IsNullOrEmpty(name))
             {

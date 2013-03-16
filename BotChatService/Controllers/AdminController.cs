@@ -1,16 +1,17 @@
-﻿using BotChatService.Models;
+﻿using BotChatService.App_Start;
+using BotChatService.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Ninject;
+using Me.WLF.IDAL;
 
 namespace BotChatService.Controllers
 {
     public class AdminController : Controller
     {
-        //
-        // GET: /Admin/
         [HttpGet]
         public ActionResult Index()
         {
@@ -22,9 +23,15 @@ namespace BotChatService.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (model.UserName == "CareerBuilder" && model.Password == "C@reerBuilder")
+                var repo = NinjectWebCommon.kernel.Get<IAdminRepositary>();
+                if (repo.GetByUserNameAndPassword(model.UserName, model.Password) != null)
                 {
-                    return RedirectToAction("Main", "Manage");
+                    Session["CurrentUser"] = repo.GetByUserNameAndPassword(model.UserName, model.Password);
+                    return Redirect("Main");
+                }
+                else
+                {
+                    ModelState.AddModelError("Failure", "Username or PassWord is incorrect");
                 }
             }
             return View(model);

@@ -1,4 +1,4 @@
-﻿@model List<DomainCore.Models.ChineseLastName>
+﻿@model List<Me.WLF.Model.ChineseLastName>
 
 @{
     ViewBag.Title = "Index";
@@ -17,7 +17,7 @@
     {
         <tr>
             <td>@t.LastName</td>
-            <td>@Html.ActionLink("Edit", "Edit", new { Id = @t.Id })
+            <td>
                 @Html.ActionLink("Del", "Del", new { Id = @t.Id })
             </td>
         </tr>

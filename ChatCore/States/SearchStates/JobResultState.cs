@@ -5,53 +5,36 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using ChatCore.Patterns;
+using Me.WLF.Model;
 
 namespace ChatCore.States.SearchStates
 {
     class JobResultState : BaseSearchState
     {
-        public override void HandleMsg(TalkSession session, Message msg)
+        public override void HandleMsg(TalkSession session, RequestMessage message)
         {
-            if (!String.IsNullOrEmpty(msg.Content))
+            if (message is RequestTextMessage)
             {
-                if (msg.Content.IsGoToNextPage())
+                var msg = message as RequestTextMessage;
+                if (!String.IsNullOrEmpty(msg.Content))
                 {
-                    Search.PageIndex++;
-                    session.State = new JobResultState() { Search = Search };
+                    if (PatternManager.IsGoToNextPage(msg.Content))
+                    {
+                        Search.PageIndex++;
+                        session.State = new JobResultState() { Search = Search };
+                    }
+                    else if (PatternManager.IsGoToPrePage(msg.Content))
+                    {
+                        Search.PageIndex--;
+                        session.State = new JobResultState() { Search = Search };
+                    }
+                    else if (PatternManager.IsSearchStartPattern(msg.Content))
+                        session.State = new SearchStartStates();
+                    else if (PatternManager.IsUserProfileStart(msg.Content))
+                        session.State = new UserProfileStates.UserProfileState();
+                    else
+                        session.State = new NewState();
                 }
-                else if (msg.Content.IsGoToPrePage())
-                {
-                    Search.PageIndex--;
-                    session.State = new JobResultState() { Search = Search };
-                }
-                else if (msg.Content.IsSearchStart())
-                    session.State = new SearchStartStates();
-                else if (msg.Content.IsUserProfileStart())
-                    session.State = new UserProfileStates.UserProfileState();
-                else
-                    session.State = new NewState();
-            }
-        }
-
-        public override string Content
-        {
-            get
-            {
-                IJobRepositary repositary = new JobRepositaryByAPI();
-                var results = repositary.Search(new JobSearchQuery()
-                {
-                    KeyWord = Search.Keyword,
-                    Location = Search.Location,
-                    PageSize = 3,
-                    StartIndex = Search.PageIndex * 3
-                });
-                var sb = new StringBuilder();
-                foreach (var t in results)
-                {
-                    sb.AppendFormat("Title:{0}\nDID:{1}", t.JobTitle, t.DID);
-                }
-                sb.AppendLine("输入1到下一页");
-                return sb.ToString();
             }
         }
 
@@ -72,7 +55,7 @@ namespace ChatCore.States.SearchStates
                 {
                     var r = new ReplyJobResultMessage()
                     {
-                        CreateDT = DateTime.Now,
+                        SentTime = DateTime.Now,
                         From = _TalkSession.To,
                         To = _TalkSession.From,
                         Results = results.Select(t => new JobResult()
@@ -98,7 +81,7 @@ namespace ChatCore.States.SearchStates
                 {
                     return new ReplyTextMessage()
                     {
-                        CreateDT = DateTime.Now,
+                        SentTime = DateTime.Now,
                         From = _TalkSession.To,
                         To = _TalkSession.From,
                         Content = "啊欧，没有找到工作。。。。。重新开始搜索吧~~"

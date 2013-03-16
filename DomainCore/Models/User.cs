@@ -21,5 +21,30 @@ namespace DomainCore.Models
         [MaxLength(5)]
         public String Degree { get; set; }
 
+        public static explicit operator User(Me.WLF.Model.User u)
+        {
+            return new User()
+            {
+                Name = u.Name,
+                Location = u.Location,
+                ClientId = u.ClientId,
+                Degree = u.Degree,
+                Id = u.Id,
+                UserName = u.UserName
+            };
+        }
+
+        public static explicit operator Me.WLF.Model.User(User u)
+        {
+            return new Me.WLF.Model.User()
+            {
+                Name = u.Name,
+                Location = u.Location,
+                ClientId = u.ClientId,
+                Degree = u.Degree,
+                Id = u.Id,
+                UserName = u.UserName
+            };
+        }
     }
 }

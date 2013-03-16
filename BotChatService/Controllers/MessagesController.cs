@@ -7,6 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Web.Mvc;
 using Ninject;
+using Me.WLF.Model;
 
 namespace BotChatService.Controllers
 {
@@ -22,33 +23,17 @@ namespace BotChatService.Controllers
         public ActionResult Index()
         {
             string xmlContent = string.Empty;
-            using (StreamReader sr = new StreamReader(Request.InputStream))
-            {
-                xmlContent = sr.ReadToEnd();
-            }
+            using (StreamReader sr = new StreamReader(Request.InputStream)) { xmlContent = sr.ReadToEnd(); }
             WeChatRequestMessage msg = WeChatRequestMessage.CreateFromXml(xmlContent);
-
-
             MessageHandler handler = new MessageHandler();
             var request = NinjectWebCommon.kernel.Get<MessageRequestContext>();
-
             var response = new MessageReplyContext();
+            request.MessageRequest = (RequestMessage)msg;
 
-            request.MessageRequest = new ChatCore.Message()
-            {
-                Content = (msg as WeChatRequestTextMessage).Content,
-                From = msg.FromUserName,
-                SentTime = msg.CreateTime,
-                To = msg.ToUserName
-            };
             handler.HandleRequest(request, response);
 
-
             WeChatResponseMessage rsp = WeChatResponseMessage.GetMessage(response.ReplyMessage);
-
-
             string xmlResponseContent = rsp.ConvertToWeiChatResponse();
-
             return new ContentResult() { Content = xmlResponseContent };
 
         }

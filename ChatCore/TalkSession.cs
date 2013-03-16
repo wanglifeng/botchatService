@@ -1,5 +1,4 @@
-﻿using ChatCore.Data;
-using ChatCore.Models;
+﻿using ChatCore.Models;
 using ChatCore.States;
 using DomainCore;
 using Ninject;
@@ -8,16 +7,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using Me.WLF.IDAL;
+using Me.WLF.Model;
+
 namespace ChatCore
 {
     public class TalkSession
     {
-        [Inject]
-        public IUserRepositary UserRepostitary { get; set; }
+        public RequestMessage LastMessage { get; set; }
 
-        public Message LastMessage { get; set; }
-
-        public TalkSession(String from,String to)
+        public TalkSession(String from, String to)
         {
             State = new NewState();
             From = from;
@@ -29,17 +28,11 @@ namespace ChatCore
 
         public BaseState State { get; set; }
 
-        public void Request(Message msg)
+        public void Request(RequestMessage msg)
         {
             State.Handle(this, msg, string.Empty);
         }
 
-        public ReplyMessage ReplyMessage
-        {
-            get
-            {
-                return State.Message;
-            }
-        }
+        public ReplyMessage ReplyMessage { get { return State.Message; } }
     }
 }
