@@ -19,6 +19,15 @@ namespace ChatCore.States
         protected TalkSession _TalkSession { get; set; }
 
         private IPatternManager _PatternManager;
+
+        protected IKernel Kernel
+        {
+            get
+            {
+                return KernelManager.Kernel;
+            }
+        }
+
         [Inject]
         protected IPatternManager PatternManager
         {
@@ -39,8 +48,14 @@ namespace ChatCore.States
         {
             _TalkSession = session;
             session.LastMessage = msg;
-
-            Handle(session, msg);
+            if (session.Language == Language.None && !(session.State is WaitLanguageState))
+            {
+                session.State = Kernel.Get<WaitLanguageState>();
+            }
+            else
+            {
+                Handle(session, msg);
+            }
 
             session.State._TalkSession = session;
         }

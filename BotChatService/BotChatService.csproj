@@ -154,6 +154,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="KernelManageByDB.cs" />
     <Compile Include="Models\ManageController.cs" />
     <Compile Include="Models\UserModels.cs" />
     <Compile Include="Models\WeChatRequestMessage.cs" />

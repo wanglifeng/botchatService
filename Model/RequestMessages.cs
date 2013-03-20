@@ -8,6 +8,7 @@ namespace Me.WLF.Model
     public abstract class RequestMessage : Message
     {
         public MessageType MsgType { get; set; }
+        public String ClientId { get; set; }
 
         public enum MessageType
         {

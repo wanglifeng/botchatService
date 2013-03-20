@@ -27,7 +27,9 @@ namespace ChatCore
                 }
                 else
                 {
-                    _Session = new TalkSession(MessageRequest.From, MessageRequest.To);
+                    _Session = KernelManager.Kernel.Get<TalkSession>();
+                    _Session.From = MessageRequest.From;
+                    _Session.To = MessageRequest.To;
                     //_Session.State = new States.NewState();
                     TalkSessionRepositry.Save(_Session);
                 }

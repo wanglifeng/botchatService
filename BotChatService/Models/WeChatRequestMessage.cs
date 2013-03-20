@@ -46,7 +46,8 @@ namespace BotChatService.Models
                     From = m.FromUserName,
                     MsgType = RequestMessage.MessageType.text,
                     SentTime = m.CreateTime,
-                    To = m.ToUserName
+                    To = m.ToUserName,
+                    ClientId = "WeChat"
                 };
             }
             return null;

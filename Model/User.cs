@@ -13,5 +13,13 @@ namespace Me.WLF.Model
         public String Location { get; set; }
         public String Name { get; set; }
         public String Degree { get; set; }
+        public Language Language { get; set; }
+    }
+
+    public enum Language
+    {
+        None,
+        Chinese,
+        English
     }
 }

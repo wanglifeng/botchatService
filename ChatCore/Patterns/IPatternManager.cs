@@ -19,5 +19,7 @@ namespace ChatCore.Patterns
         bool IsGoToNextPage(string p);
 
         bool IsGoToPrePage(string p);
+
+        bool IsValidLanguage(string p);
     }
 }

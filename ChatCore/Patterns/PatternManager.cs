@@ -59,5 +59,12 @@ namespace ChatCore.Patterns
         {
             return p == "2";
         }
+
+
+        public bool IsValidLanguage(string p)
+        {
+            String[] validLanguages = { "Chinese", "English", "中文", "英文" };
+            return Array.Exists<String>(validLanguages, t => t.ToLower() == p.ToLower());
+        }
     }
 }
