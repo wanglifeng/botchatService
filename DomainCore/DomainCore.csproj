@@ -88,6 +88,10 @@
     <Compile Include="Migrations\201303161102354_Add_FeedBack_class1.Designer.cs">
       <DependentUpon>201303161102354_Add_FeedBack_class1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201303201728070_Add_Language_Into_User_Class.cs" />
+    <Compile Include="Migrations\201303201728070_Add_Language_Into_User_Class.Designer.cs">
+      <DependentUpon>201303201728070_Add_Language_Into_User_Class.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Admin.cs" />
     <Compile Include="Models\ChineseLastName.cs" />
@@ -146,6 +150,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201303161102354_Add_FeedBack_class1.resx">
       <DependentUpon>201303161102354_Add_FeedBack_class1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201303201728070_Add_Language_Into_User_Class.resx">
+      <DependentUpon>201303201728070_Add_Language_Into_User_Class.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

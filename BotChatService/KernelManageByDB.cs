@@ -50,7 +50,7 @@ namespace BotChatService
             kernel.Bind<WaitLanguageState>().ToSelf();
 
             kernel.Bind<TalkSession>().ToSelf();
-            kernel.Bind<IUserRepositary>().To<UserRepositaryDALByStatic>();
+            kernel.Bind<IUserRepositary>().To<UserRepositaryByDB>();
             kernel.Bind<ITalkSessionRepositry>().To<TalkSessionRepositryByStaticClass>();
 
             kernel.Bind<IStateMessageRepositary>().To<StateMessageRepositaryByStatic>();

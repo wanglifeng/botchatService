@@ -7,6 +7,11 @@ using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 
+using System.Threading;
+using ChatCore;
+using Ninject;
+using Me.WLF.IDAL;
+
 namespace BotChatService
 {
     // Note: For instructions on enabling IIS6 or IIS7 classic mode, 
@@ -22,7 +27,16 @@ namespace BotChatService
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-            
+
+            Timer timer = new Timer(new TimerCallback((o) =>
+                {
+                    Thread t = new Thread(() =>
+                    {
+                        var i = KernelManager.Kernel.Get<IUserRepositary>().List().Count;
+                    });
+                    t.Start();
+                }), null, 3600, 3600);
+            Application["Timer"] = timer;
         }
     }
 }

@@ -55,13 +55,15 @@ namespace ChatCore
                 var user = UserRepositary.GetByUserName(From);
                 if (user == null)
                 {
-                    user = new User() { UserName = From };
+                    user = new User() { UserName = From, ClientId = ClientId };
                     UserRepositary.Save(user);
                     user = UserRepositary.GetByUserName(From);
                 }
                 return user;
             }
         }
+
+        public String ClientId { get; set; }
 
         public ReplyMessage ReplyMessage { get { return State.Message; } }
     }

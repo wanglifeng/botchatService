@@ -21,6 +21,9 @@ namespace DomainCore.Models
         [MaxLength(5)]
         public String Degree { get; set; }
 
+        [MaxLength(10)]
+        public String Language { get; set; }
+
         public static explicit operator User(Me.WLF.Model.User u)
         {
             return new User()
@@ -30,7 +33,8 @@ namespace DomainCore.Models
                 ClientId = u.ClientId,
                 Degree = u.Degree,
                 Id = u.Id,
-                UserName = u.UserName
+                UserName = u.UserName,
+                Language = u.Language.ToString()
             };
         }
 
@@ -43,7 +47,8 @@ namespace DomainCore.Models
                 ClientId = u.ClientId,
                 Degree = u.Degree,
                 Id = u.Id,
-                UserName = u.UserName
+                UserName = u.UserName,
+                Language = (Me.WLF.Model.Language)Enum.Parse(typeof(Me.WLF.Model.Language), u.Language, true)
             };
         }
     }
