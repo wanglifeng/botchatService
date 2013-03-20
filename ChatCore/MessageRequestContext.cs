@@ -30,6 +30,7 @@ namespace ChatCore
                     _Session = KernelManager.Kernel.Get<TalkSession>();
                     _Session.From = MessageRequest.From;
                     _Session.To = MessageRequest.To;
+                    _Session.ClientId = MessageRequest.ClientId;
                     //_Session.State = new States.NewState();
                     TalkSessionRepositry.Save(_Session);
                 }

@@ -30,6 +30,8 @@ namespace ChatCore.States
                     session.State = Kernel.Get<UserProfileState>();
                 else if (PatternManager.IsNewRegisterUser(m.Content))
                     session.State = Kernel.Get<NewUserState>();
+                else if (PatternManager.IsLanguage(m.Content))
+                    session.State = Kernel.Get<WaitLanguageState>();
                 else if (PatternManager.IsFeedBackPattern(m.Content))
                 {
                     FeedBackRepositary.Save(new Me.WLF.Model.FeedBack()
