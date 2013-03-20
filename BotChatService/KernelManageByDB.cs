@@ -54,7 +54,7 @@ namespace BotChatService
             kernel.Bind<ITalkSessionRepositry>().To<TalkSessionRepositryByStaticClass>();
 
             kernel.Bind<IStateMessageRepositary>().To<StateMessageRepositaryByStatic>();
-            kernel.Bind<IFeedBackRepositary>().To<FeedBackRepositaryByStatic>();
+            kernel.Bind<IFeedBackRepositary>().To<FeedBackRepositaryByDB>();
 
             kernel.Bind<MessageRequestContext>().ToSelf();
             kernel.Bind<IPatternManager>().To<PatternManager>();
