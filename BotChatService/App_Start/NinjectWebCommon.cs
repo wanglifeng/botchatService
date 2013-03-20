@@ -15,15 +15,15 @@ namespace BotChatService.App_Start
 
     public static class NinjectWebCommon
     {
-        public static StandardKernel kernel = new StandardKernel();
+        //public static StandardKernel kernel = new StandardKernel();
 
         static NinjectWebCommon()
         {
-            kernel.Bind<IUserRepositary>().To<UserRepositaryDALByStatic>();
-            kernel.Bind<ITalkSessionRepositry>().To<TalkSessionRepositryByStaticClass>();
-            kernel.Bind<IAdminRepositary>().To<AdminRepositaryByDB>();
-            kernel.Bind<TalkSession>().ToSelf();
-            kernel.Bind<MessageRequestContext>().ToSelf();
+            //kernel.Bind<IUserRepositary>().To<UserRepositaryDALByStatic>();
+            //kernel.Bind<ITalkSessionRepositry>().To<TalkSessionRepositryByStaticClass>();
+            //kernel.Bind<IAdminRepositary>().To<AdminRepositaryByDB>();
+            //kernel.Bind<TalkSession>().ToSelf();
+            //kernel.Bind<MessageRequestContext>().ToSelf();
         }
     }
 }

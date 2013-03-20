@@ -18,15 +18,8 @@ namespace ChatCoreConsole
     {
         public static void Main(String[] args)
         {
-            var kernel = new StandardKernel();
-            kernel.Bind<IUserRepositary>().To<UserRepositaryDALByStatic>();
-            kernel.Bind<ITalkSessionRepositry>().To<TalkSessionRepositryByStaticClass>();
-            kernel.Bind<TalkSession>().ToSelf();
-            kernel.Bind<MessageRequestContext>().ToSelf();
-            kernel.Bind<IPatternManager>().To<PatternManager>();
-
-            Console.WriteLine((new Me.WLF.DALByStatic.FeedBackRepositaryByStatic()).GetType().Assembly);
-
+            var kernel = KernelManager.Kernel;
+            
             string msg = Console.ReadLine();
             MessageHandler handler = new MessageHandler();
             var request = kernel.Get<MessageRequestContext>();
@@ -41,6 +34,7 @@ namespace ChatCoreConsole
                     From = "wanglifeng",
                     To = "weichat",
                     Content = msg,
+                    ClientId = "Console",
                     SentTime = DateTime.Now
                 };
                 handler.HandleRequest(request, response);

@@ -9,12 +9,15 @@ using DomainCore.Models;
 using ChatCore.Models;
 using Me.WLF.Model;
 using Me.WLF.IDAL;
+using Ninject;
 
 namespace ChatCore.States.UserProfileStates
 {
     public class UserProfileWaitNameState : BaseState
     {
         private List<String> Msgs = null;
+
+        [Inject]
         private IUserRepositary UserRepositary { get; set; }
 
         public UserProfileWaitNameState()
@@ -38,7 +41,9 @@ namespace ChatCore.States.UserProfileStates
                     var user = UserRepositary.GetByUserName(session.From);
                     user.Name = m.Content;
                     UserRepositary.Save(user);
-                    session.State = new UserProfileState() { PreMsg = "输入成功" };
+                    var state = Kernel.Get<UserProfileState>();
+                    state.PreMsg = "输入成功";
+                    session.State = state;
                 }
             }
         }

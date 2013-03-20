@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.Mvc;
 using Ninject;
 using Me.WLF.IDAL;
+using ChatCore;
 
 namespace BotChatService.Controllers
 {
@@ -23,7 +24,7 @@ namespace BotChatService.Controllers
         {
             if (ModelState.IsValid)
             {
-                var repo = NinjectWebCommon.kernel.Get<IAdminRepositary>();
+                var repo = KernelManager.Kernel.Get<IAdminRepositary>();
                 if (repo.GetByUserNameAndPassword(model.UserName, model.Password) != null)
                 {
                     Session["CurrentUser"] = repo.GetByUserNameAndPassword(model.UserName, model.Password);

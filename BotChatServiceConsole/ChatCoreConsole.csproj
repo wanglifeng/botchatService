@@ -67,9 +67,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="KernelManageByStatic.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TalkSessionRepositryByStaticClass.cs" />
+    <Compile Include="UserRepositary.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ChatCore\ChatCore.csproj">

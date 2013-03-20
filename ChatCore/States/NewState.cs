@@ -11,25 +11,13 @@ using ChatCore.Patterns;
 
 using Me.WLF.Model;
 using Me.WLF.IDAL;
+using Ninject;
 namespace ChatCore.States
 {
     public class NewState : BaseState
     {
-        private IFeedBackRepositary _FeedBackRepositary;
-
-        public IFeedBackRepositary FeedBackRepositary
-        {
-            get
-            {
-                if (_FeedBackRepositary == null)
-                {
-                    var feedBackRepositaryClassName = System.Configuration.ConfigurationManager.AppSettings["IFeedBack"];
-                    Console.WriteLine(feedBackRepositaryClassName);
-                    _FeedBackRepositary = Activator.CreateInstance(Type.GetType(feedBackRepositaryClassName)) as IFeedBackRepositary;
-                }
-                return _FeedBackRepositary;
-            }
-        }
+        [Inject]
+        public IFeedBackRepositary FeedBackRepositary { get; set; }
 
         public override void Handle(TalkSession session, RequestMessage msg)
         {
@@ -37,11 +25,11 @@ namespace ChatCore.States
             {
                 var m = msg as RequestTextMessage;
                 if (PatternManager.IsSearchStartPattern(m.Content))
-                    session.State = new SearchStartStates();
+                    session.State = Kernel.Get<SearchStartStates>();
                 else if (PatternManager.IsUserProfileStart(m.Content))
-                    session.State = new UserProfileState();
+                    session.State = Kernel.Get<UserProfileState>();
                 else if (PatternManager.IsNewRegisterUser(m.Content))
-                    session.State = new NewUserState();
+                    session.State = Kernel.Get<NewUserState>();
                 else if (PatternManager.IsFeedBackPattern(m.Content))
                 {
                     FeedBackRepositary.Save(new Me.WLF.Model.FeedBack()
@@ -51,6 +39,8 @@ namespace ChatCore.States
                         Content = m.Content
                     });
                     PreMsg = "谢谢您的反馈";
+
+                    session.State = Kernel.Get<NewState>();
                 }
             }
         }

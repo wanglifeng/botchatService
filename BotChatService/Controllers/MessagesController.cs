@@ -26,7 +26,7 @@ namespace BotChatService.Controllers
             using (StreamReader sr = new StreamReader(Request.InputStream)) { xmlContent = sr.ReadToEnd(); }
             WeChatRequestMessage msg = WeChatRequestMessage.CreateFromXml(xmlContent);
             MessageHandler handler = new MessageHandler();
-            var request = NinjectWebCommon.kernel.Get<MessageRequestContext>();
+            var request = KernelManager.Kernel.Get<MessageRequestContext>();
             var response = new MessageReplyContext();
             request.MessageRequest = (RequestMessage)msg;
 

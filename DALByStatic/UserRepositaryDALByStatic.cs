@@ -9,7 +9,7 @@ namespace Me.WLF.DALByStatic
 {
     public class UserRepositaryDALByStatic : IUserRepositary
     {
-        private List<User> Users = new List<User>();
+        private static List<User> Users = new List<User>();
 
         public User GetById(int id)
         {
@@ -24,6 +24,10 @@ namespace Me.WLF.DALByStatic
         public void Save(User user)
         {
             Console.WriteLine("Saving User");
+            if (Users.Exists(u => u.UserName == user.UserName))
+            {
+                Users.RemoveAll(u => u.UserName == user.UserName);
+            }
             Users.Add(user);
             Console.WriteLine("Saved User");
         }

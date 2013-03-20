@@ -56,7 +56,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IKernelManager.cs" />
     <Compile Include="ITalkSessionRepositry.cs" />
+    <Compile Include="KernelManager.cs" />
     <Compile Include="MessageHandler.cs" />
     <Compile Include="MessageReplyContext.cs" />
     <Compile Include="MessageRequestContext.cs" />
@@ -76,6 +78,7 @@
     <Compile Include="States\SearchStates\WaitLocationState.cs" />
     <Compile Include="States\UserProfileStates\UserProfileState.cs" />
     <Compile Include="States\UserProfileStates\UserProfileWaitNameState.cs" />
+    <Compile Include="States\WaitLanguageState.cs" />
     <Compile Include="TalkSession.cs" />
     <Compile Include="Utils\ChineseNameHelper.cs" />
   </ItemGroup>

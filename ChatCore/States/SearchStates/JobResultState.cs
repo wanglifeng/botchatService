@@ -9,7 +9,7 @@ using Me.WLF.Model;
 
 namespace ChatCore.States.SearchStates
 {
-    class JobResultState : BaseSearchState
+    public class JobResultState : BaseSearchState
     {
         public override void HandleMsg(TalkSession session, RequestMessage message)
         {

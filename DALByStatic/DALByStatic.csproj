@@ -42,6 +42,7 @@
     <Compile Include="FeedBackRepositaryByStatic.cs" />
     <Compile Include="MessageRepositaryByStatic.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StateMessageRepositaryByStatic.cs" />
     <Compile Include="UserRepositaryDALByStatic.cs" />
   </ItemGroup>
   <ItemGroup>
