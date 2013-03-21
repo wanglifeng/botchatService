@@ -37,6 +37,7 @@ namespace DomainCore
                     u.Degree = user.Degree;
                     u.Location = user.Location;
                     u.Name = user.Name;
+                    u.Language = user.Language.ToString();
                 }
                 c.SaveChanges();
             }
