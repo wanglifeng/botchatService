@@ -30,18 +30,7 @@ namespace DomainCore
                 var u = c.Users.SingleOrDefault(t => t.UserName == user.UserName);
                 if (u == null)
                 {
-<<<<<<< HEAD
-                    u = new User();
-                    u.ClientId = user.ClientId;
-                    u.Degree = user.Degree;
-                    u.Location = user.Location;
-                    u.Name = user.Name;
-                    u.UserName = user.UserName;
-                    u.Language = user.Language.ToString();
-                    c.Users.Add(u);
-=======
                     c.Users.Add((Models.User)user);
->>>>>>> 21e6d65adcf901f0a91fd6906da510e36b8315eb
                 }
                 else
                 {
