@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Me.WLF.Model;
 
 namespace ChatCore.States.SearchStates
 {
@@ -10,13 +11,11 @@ namespace ChatCore.States.SearchStates
     {
         public JobSearchModel Search { get; set; }
 
-        public override void Handle(TalkSession session, Message msg)
+        public override void Handle(TalkSession session, RequestMessage msg)
         {
             HandleMsg(session,msg);
         }
 
-        public abstract void HandleMsg(TalkSession session, Message msg);
-
-        public override abstract String Content { get; }
+        public abstract void HandleMsg(TalkSession session, RequestMessage msg);
     }
 }

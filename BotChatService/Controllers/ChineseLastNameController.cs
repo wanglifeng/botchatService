@@ -4,7 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using DomainCore;
-using DomainCore.Models;
+using Me.WLF.IDAL;
+using Me.WLF.Model;
 
 namespace BotChatService.Controllers
 {
@@ -30,5 +31,11 @@ namespace BotChatService.Controllers
             return RedirectToAction("Index");
         }
 
+        public ActionResult Del(int id)
+        {
+            IChineseLastNameRepositary repo = new ChineseLastNameRepositaryByDB();
+            repo.Del(id);
+            return RedirectToAction("Index");
+        }
     }
 }

@@ -1,38 +1,44 @@
-﻿using DomainCore;
+﻿using ChatCore.Models;
+using DomainCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using ChatCore.Patterns;
+using Me.WLF.Model;
 
 namespace ChatCore.States.SearchStates
 {
-    class JobResultState : BaseSearchState
+    public class JobResultState : BaseSearchState
     {
-        public override void HandleMsg(TalkSession session, Message msg)
+        public override void HandleMsg(TalkSession session, RequestMessage message)
         {
-            if (!String.IsNullOrEmpty(msg.Content))
+            if (message is RequestTextMessage)
             {
-                if (msg.Content == "1")
+                var msg = message as RequestTextMessage;
+                if (!String.IsNullOrEmpty(msg.Content))
                 {
-                    Search.PageIndex++;
-                    session.State = new JobResultState() { Search = Search };
-                }
-                else if (msg.Content == "2")
-                {
-                    Search.PageIndex--;
-                    session.State = new JobResultState() { Search = Search };
-                }
-                else
-                {
-                    if (msg.Content == "Search")
+                    if (PatternManager.IsGoToNextPage(msg.Content))
+                    {
+                        Search.PageIndex++;
+                        session.State = new JobResultState() { Search = Search };
+                    }
+                    else if (PatternManager.IsGoToPrePage(msg.Content))
+                    {
+                        Search.PageIndex--;
+                        session.State = new JobResultState() { Search = Search };
+                    }
+                    else if (PatternManager.IsSearchStartPattern(msg.Content))
                         session.State = new SearchStartStates();
-                    else if (msg.Content == "profile")
+                    else if (PatternManager.IsUserProfileStart(msg.Content))
                         session.State = new UserProfileStates.UserProfileState();
+                    else
+                        session.State = new NewState();
                 }
             }
         }
 
-        public override string Content
+        public override ReplyMessage Message
         {
             get
             {
@@ -44,14 +50,43 @@ namespace ChatCore.States.SearchStates
                     PageSize = 3,
                     StartIndex = Search.PageIndex * 3
                 });
-                //return string.Format("KeyWord:{0},Location{1},Page:{2}", Search.Keyword, Search.Location, Search.PageIndex);
-                var sb = new StringBuilder();
-                foreach (var t in results)
+
+                if (results.Count > 0)
                 {
-                    sb.AppendFormat("Title:{0}\nDID:{1}", t.JobTitle, t.DID);
+                    var r = new ReplyJobResultMessage()
+                    {
+                        SentTime = DateTime.Now,
+                        From = _TalkSession.To,
+                        To = _TalkSession.From,
+                        Results = results.Select(t => new JobResult()
+                        {
+                            DID = t.DID,
+                            CompanyName = t.Company,
+                            Description = t.Detail,
+                            Title = t.JobTitle,
+                            JobDetailsURL = t.JobDetailsURL,
+                            CompanyImageURL = t.CompanyImageURL
+                        }).ToList()
+                    };
+
+                    r.Results.Add(new JobResult()
+                    {
+                        Title = "输入1查看下一页，2查看上一页，点击可以查看列表",
+                        JobDetailsURL = string.Format("http://mobile.careerbuilder.com.cn/seeker/search?go=1&kw={0}&loc={1}", Search.Keyword, Search.Location)
+                    });
+
+                    return r;
                 }
-                sb.AppendLine("输入1到下一页");
-                return sb.ToString();
+                else
+                {
+                    return new ReplyTextMessage()
+                    {
+                        SentTime = DateTime.Now,
+                        From = _TalkSession.To,
+                        To = _TalkSession.From,
+                        Content = "啊欧，没有找到工作。。。。。重新开始搜索吧~~"
+                    };
+                }
             }
         }
     }

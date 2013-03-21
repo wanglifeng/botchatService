@@ -3,6 +3,14 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Ninject;
+using System.Net;
+using DomainCore;
+using Me.WLF.IDAL;
+using Me.WLF.Model;
+using Me.WLF.DALByStatic;
+using Newtonsoft.Json;
+using ChatCore.Patterns;
 
 namespace ChatCoreConsole
 {
@@ -10,15 +18,30 @@ namespace ChatCoreConsole
     {
         public static void Main(String[] args)
         {
-            TalkSession session = new TalkSession("wanglifeng");
-            Console.WriteLine(session.Message.ToString());
+            var kernel = KernelManager.Kernel;
+            
+            string msg = Console.ReadLine();
+            MessageHandler handler = new MessageHandler();
+            var request = kernel.Get<MessageRequestContext>();
 
-            string msgConent = Console.ReadLine();
-            while (!String.IsNullOrEmpty(msgConent))
+            var response = new MessageReplyContext();
+
+            while (!string.IsNullOrEmpty(msg))
             {
-                session.Request(new Message() { Content = msgConent });
-                Console.WriteLine(session.Message.ToString());
-                msgConent = Console.ReadLine();
+                request = kernel.Get<MessageRequestContext>();
+                request.MessageRequest = new RequestTextMessage()
+                {
+                    From = "wanglifeng",
+                    To = "weichat",
+                    Content = msg,
+                    ClientId = "Console",
+                    SentTime = DateTime.Now
+                };
+                handler.HandleRequest(request, response);
+
+                Console.WriteLine(JsonConvert.SerializeObject(response.ReplyMessage));
+                msg = Console.ReadLine();
+
             }
         }
     }

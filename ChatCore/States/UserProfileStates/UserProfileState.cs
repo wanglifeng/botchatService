@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Me.WLF.Model;
 
 namespace ChatCore.States.UserProfileStates
 {
@@ -11,34 +12,38 @@ namespace ChatCore.States.UserProfileStates
     {
         private String _Content = string.Empty;
 
-        public override void Handle(TalkSession session, Message msg)
+        public override void Handle(TalkSession session, RequestMessage msg)
         {
-            if (!String.IsNullOrEmpty(msg.Content))
+            if (msg is RequestTextMessage)
             {
-                if (msg.Content == "1")
+                var m = msg as RequestTextMessage;
+
+                if (!String.IsNullOrEmpty(m.Content))
                 {
-                    session.State = new UserProfileWaitNameState();
-                }
-                else
-                {
-                    IQuestionRepositary repo = new QuestionRepostaryByDB();
-                    Question q = repo.GetByQuestion(msg.Content);
-                    if (q != null)
-                        _Content = q.Answer;
+                    if (m.Content == "1")
+                        session.State = new UserProfileWaitNameState();
+                    else if (m.Content == "2")
+                        session.State = new UserProfileWaitNameState();
+
                 }
             }
+            PreMsg = "输入错误~";
         }
 
-
-
-        public override string Content
+        public override ReplyMessage Message
         {
             get
             {
-                if (String.IsNullOrEmpty(_Content))
-                    return "啊欧，开始填写您的详细资料吧？输入1就可以输入姓名啦";
-                else
-                    return _Content;
+                var content = string.Empty;
+                if (!String.IsNullOrEmpty(PreMsg))
+                    content = string.Format("{0}\n", PreMsg);
+                return new ReplyTextMessage()
+                {
+                    Content = content + "开始填写您的详细资料吧？输入1就可以输入姓名啦",
+                    SentTime = DateTime.Now,
+                    From = _TalkSession.To,
+                    To = _TalkSession.From
+                };
             }
         }
     }

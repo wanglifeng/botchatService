@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>Memcached.ClientLibrary</id>
+    <version>1.0</version>
+    <title>Memcached.ClientLibrary</title>
+    <authors>lanfengqi</authors>
+    <owners>lanfengqi</owners>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>My package description.</description>
+    <summary>Memcached.ClientLibrary</summary>
+    <releaseNotes />
+    <copyright />
+    <language />
+    <references>
+      <reference file="Commons.dll" />
+      <reference file="ICSharpCode.SharpZipLib.dll" />
+      <reference file="log4net.dll" />
+      <reference file="Memcached.ClientLibrary.dll" />
+    </references>
+  </metadata>
+</package>

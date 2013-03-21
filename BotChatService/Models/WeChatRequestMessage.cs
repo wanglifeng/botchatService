@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Xml;
 
+using Me.WLF.Model;
+
 namespace BotChatService.Models
 {
     public abstract class WeChatRequestMessage
@@ -29,6 +31,24 @@ namespace BotChatService.Models
                             return new WeChatRequestTextMessage(doc);
                     }
                 }
+            }
+            return null;
+        }
+
+        public static explicit operator RequestMessage(WeChatRequestMessage message)
+        {
+            if (message is WeChatRequestTextMessage)
+            {
+                var m = message as WeChatRequestTextMessage;
+                return new RequestTextMessage()
+                {
+                    Content = m.Content,
+                    From = m.FromUserName,
+                    MsgType = RequestMessage.MessageType.text,
+                    SentTime = m.CreateTime,
+                    To = m.ToUserName,
+                    ClientId = "WeChat"
+                };
             }
             return null;
         }

@@ -1,0 +1,24 @@
+﻿@model System.Collections.Generic.IList<Me.WLF.Model.FeedBack>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>FeedBacks</h2>
+<table>
+    <tr>
+        <th>User</th>
+        <th>FeedBack</th>
+        <th>Management</th>
+    </tr>
+    @foreach (var t in Model)
+    {
+        <tr>
+            <td>@t.UserName</td>
+            <td>@t.Content</td>
+            <td>
+                @Html.ActionLink("Del", "Del", new { Id = @t.Id })
+            </td>
+        </tr>
+    }
+</table>

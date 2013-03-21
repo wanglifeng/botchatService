@@ -1,8 +1,10 @@
-﻿using DomainCore.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+
+using Me.WLF.IDAL;
+using Me.WLF.Model;
 
 namespace DomainCore
 {
@@ -12,17 +14,23 @@ namespace DomainCore
         {
             using (ChatContext c = new ChatContext())
             {
-                return c.Users.SingleOrDefault(t => t.Id == id);
+                var u = c.Users.SingleOrDefault(t => t.Id == id);
+                if (u != null)
+                {
+                    return (Me.WLF.Model.User)u;
+                }
+                return null;
             }
         }
 
-        public void Save(Models.User user)
+        public void Save(User user)
         {
             using (ChatContext c = new ChatContext())
             {
-                User u = c.Users.SingleOrDefault(t => t.UserName == user.UserName);
+                var u = c.Users.SingleOrDefault(t => t.UserName == user.UserName);
                 if (u == null)
                 {
+<<<<<<< HEAD
                     u = new User();
                     u.ClientId = user.ClientId;
                     u.Degree = user.Degree;
@@ -31,6 +39,9 @@ namespace DomainCore
                     u.UserName = user.UserName;
                     u.Language = user.Language.ToString();
                     c.Users.Add(u);
+=======
+                    c.Users.Add((Models.User)user);
+>>>>>>> 21e6d65adcf901f0a91fd6906da510e36b8315eb
                 }
                 else
                 {
@@ -43,11 +54,16 @@ namespace DomainCore
             }
         }
 
-        public List<Models.User> List()
+        public List<User> List()
         {
             using (ChatContext c = new ChatContext())
             {
-                return c.Users.ToList();
+                var u = new List<User>();
+                c.Users.ToList().ForEach(t =>
+                    {
+                        u.Add((User)t);
+                    });
+                return u;
             }
         }
 
@@ -56,7 +72,24 @@ namespace DomainCore
         {
             using (ChatContext c = new ChatContext())
             {
-                return c.Users.SingleOrDefault(t => t.UserName == username);
+                var u = c.Users.SingleOrDefault(t => t.UserName == username);
+                if (u != null)
+                    return (Me.WLF.Model.User)u;
+                else
+                    return null;
+            }
+        }
+
+
+        public void Del(int id)
+        {
+            using (ChatContext c = new ChatContext())
+            {
+                var u = c.Users.SingleOrDefault(t => t.Id == id);
+                if (u != null)
+                    c.Users.Remove(u);
+
+                c.SaveChanges();
             }
         }
     }

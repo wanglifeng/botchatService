@@ -47,6 +47,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -55,10 +56,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Data\ITalkSessionRepositry.cs" />
-    <Compile Include="Data\TalkSessionRepositryByProgress.cs" />
-    <Compile Include="Message.cs" />
-    <Compile Include="Models\JobSearchModel.cs" />
+    <Compile Include="IKernelManager.cs" />
+    <Compile Include="ITalkSessionRepositry.cs" />
+    <Compile Include="KernelManager.cs" />
+    <Compile Include="MessageHandler.cs" />
+    <Compile Include="MessageReplyContext.cs" />
+    <Compile Include="MessageRequestContext.cs" />
+    <Compile Include="Models\ErrorCodes.cs" />
+    <Compile Include="Patterns\IPatternManager.cs" />
+    <Compile Include="Patterns\NewUserExtensions.cs" />
+    <Compile Include="Patterns\PatternManager.cs" />
+    <Compile Include="Patterns\Validators\IChineseLastNameValidator.cs" />
+    <Compile Include="Patterns\Validators\IValidator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="States\BaseState.cs" />
     <Compile Include="States\NewState.cs" />
@@ -69,6 +78,7 @@
     <Compile Include="States\SearchStates\WaitLocationState.cs" />
     <Compile Include="States\UserProfileStates\UserProfileState.cs" />
     <Compile Include="States\UserProfileStates\UserProfileWaitNameState.cs" />
+    <Compile Include="States\WaitLanguageState.cs" />
     <Compile Include="TalkSession.cs" />
     <Compile Include="Utils\ChineseNameHelper.cs" />
   </ItemGroup>
@@ -79,6 +89,14 @@
     <ProjectReference Include="..\DomainCore\DomainCore.csproj">
       <Project>{5e6faf41-96c3-44ad-9f82-d3579319c8d0}</Project>
       <Name>DomainCore</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\IDAL\IDAL.csproj">
+      <Project>{c49592a4-1c4a-423a-8f24-f9ede5e99f5b}</Project>
+      <Name>IDAL %28IDAL\IDAL%29</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Model\Model.csproj">
+      <Project>{412c4b83-ff42-4949-8211-defe85a9b36d}</Project>
+      <Name>Model</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

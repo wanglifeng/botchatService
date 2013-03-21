@@ -1,68 +1,70 @@
-﻿using ChatCore.Data;
+﻿using ChatCore.Models;
 using ChatCore.States;
 using DomainCore;
+using Ninject;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using Me.WLF.IDAL;
+using Me.WLF.Model;
+
 namespace ChatCore
 {
     public class TalkSession
     {
-        public ITalkSessionRepositry TalkSessionRepositry
+        public RequestMessage LastMessage { get; set; }
+
+        [Inject]
+        public IUserRepositary UserRepositary { get; set; }
+
+        public TalkSession() { State = KernelManager.Kernel.Get<NewState>(); }
+
+        public TalkSession(String from, String to)
         {
-            get
-            {
-                return new TalkSessionRepositryByProgress();
-            }
-        }
-
-        public TalkSession(String from)
-        {
-            
-
-            State = new NewState();
-            if (TalkSessionRepositry.Get(from) != null)
-                State = TalkSessionRepositry.Get(from).State;
-            else
-            {
-                IUserRepositary repo = new UserRepositaryByDB();
-                if (repo.GetByUserName(from) == null)
-                {
-                    repo.Save(new DomainCore.Models.User()
-                    {
-                        ClientId = "weichat",
-                        UserName = from
-                    });
-                }
-            }
-
+            State = KernelManager.Kernel.Get<NewState>(); // new NewState();
             From = from;
+            To = to;
         }
 
-        public String From { get; private set; }
+        public String From { get; set; }
+        public String To { get; set; }
 
         public BaseState State { get; set; }
 
-        public void Request(Message msg)
+        public void Request(RequestMessage msg)
         {
-            State.Handle(this, msg);
-            TalkSessionRepositry.Save(this);
+            State.Handle(this, msg, string.Empty);
         }
-
-        public Message Message
+        public Language Language
         {
             get
             {
-                return new Message()
-                {
-                    From = "weixin",
-                    To = From,
-                    Content = String.Format("{0}{1}", State.PreMsg, State.Content),
-                    SentTime = DateTime.Now
-                };
+                if (User == null)
+                    return Me.WLF.Model.Language.None;
+                else
+                    return User.Language;
             }
         }
+
+        public User User
+        {
+            get
+            {
+                var user = UserRepositary.GetByUserName(From);
+                if (user == null)
+                {
+                    user = new User() { UserName = From, ClientId = ClientId };
+                    UserRepositary.Save(user);
+                    user = UserRepositary.GetByUserName(From);
+                }
+                return user;
+            }
+        }
+
+        public String ClientId { get; set; }
+
+        public ReplyMessage ReplyMessage { get { return State.Message; } }
     }
 }

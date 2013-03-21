@@ -1,10 +1,13 @@
-﻿using BotChatService.Models;
+﻿using BotChatService.App_Start;
+using BotChatService.Models;
 using ChatCore;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Web.Mvc;
+using Ninject;
+using Me.WLF.Model;
 
 namespace BotChatService.Controllers
 {
@@ -20,31 +23,17 @@ namespace BotChatService.Controllers
         public ActionResult Index()
         {
             string xmlContent = string.Empty;
-            using (StreamReader sr = new StreamReader(Request.InputStream))
-            {
-                xmlContent = sr.ReadToEnd();
-            }
+            using (StreamReader sr = new StreamReader(Request.InputStream)) { xmlContent = sr.ReadToEnd(); }
             WeChatRequestMessage msg = WeChatRequestMessage.CreateFromXml(xmlContent);
+            MessageHandler handler = new MessageHandler();
+            var request = KernelManager.Kernel.Get<MessageRequestContext>();
+            var response = new MessageReplyContext();
+            request.MessageRequest = (RequestMessage)msg;
 
-            TalkSession talkSession = new TalkSession(msg.FromUserName);
-            talkSession.Request(new Message()
-            {
-                Content = (msg as WeChatRequestTextMessage).Content,
-                From = msg.FromUserName,
-                SentTime = msg.CreateTime,
-                To = msg.ToUserName
-            });
+            handler.HandleRequest(request, response);
 
-
-            WeChatResponseMessage rsp = new WeChatResponseTextMessage()
-            {
-                FromUser = msg.ToUserName,
-                ToUser = msg.FromUserName,
-                Content = talkSession.Message.Content
-            };
-
+            WeChatResponseMessage rsp = WeChatResponseMessage.GetMessage(response.ReplyMessage);
             string xmlResponseContent = rsp.ConvertToWeiChatResponse();
-
             return new ContentResult() { Content = xmlResponseContent };
 
         }
