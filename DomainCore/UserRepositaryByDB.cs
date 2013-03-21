@@ -29,6 +29,7 @@ namespace DomainCore
                     u.Location = user.Location;
                     u.Name = user.Name;
                     u.UserName = user.UserName;
+                    u.Language = user.Language.ToString();
                     c.Users.Add(u);
                 }
                 else
@@ -36,6 +37,7 @@ namespace DomainCore
                     u.Degree = user.Degree;
                     u.Location = user.Location;
                     u.Name = user.Name;
+                    u.Language = user.Language.ToString();
                 }
                 c.SaveChanges();
             }
