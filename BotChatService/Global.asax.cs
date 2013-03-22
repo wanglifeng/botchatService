@@ -27,16 +27,6 @@ namespace BotChatService
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-
-            Timer timer = new Timer(new TimerCallback((o) =>
-                {
-                    Thread t = new Thread(() =>
-                    {
-                        var i = KernelManager.Kernel.Get<IUserRepositary>().List().Count;
-                    });
-                    t.Start();
-                }), null, 3600, 3600);
-            Application["Timer"] = timer;
         }
     }
 }
