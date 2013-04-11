@@ -6,6 +6,8 @@ using System.Linq;
 using System.Text;
 using ChatCore.Patterns;
 using Me.WLF.Model;
+using Ninject;
+using ChatCore.States.UserProfileStates;
 
 namespace ChatCore.States.SearchStates
 {
@@ -21,19 +23,19 @@ namespace ChatCore.States.SearchStates
                     if (PatternManager.IsGoToNextPage(msg.Content))
                     {
                         Search.PageIndex++;
-                        session.State = new JobResultState() { Search = Search };
                     }
                     else if (PatternManager.IsGoToPrePage(msg.Content))
                     {
                         Search.PageIndex--;
-                        session.State = new JobResultState() { Search = Search };
+                        //session.State = this;
+                        //session.State = new JobResultState() { Search = Search };
                     }
                     else if (PatternManager.IsSearchStartPattern(msg.Content))
-                        session.State = new SearchStartStates();
+                        session.State = Kernel.Get<SearchStartStates>();
                     else if (PatternManager.IsUserProfileStart(msg.Content))
-                        session.State = new UserProfileStates.UserProfileState();
+                        session.State = Kernel.Get<UserProfileState>();
                     else
-                        session.State = new NewState();
+                        session.State = Kernel.Get<NewState>();
                 }
             }
         }

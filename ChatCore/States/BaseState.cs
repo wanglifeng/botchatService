@@ -22,8 +22,6 @@ namespace ChatCore.States
         [Inject]
         public IStateMessageRepositary StateMessageRepositary { get; set; }
 
-        //private IPatternManager _PatternManager;
-
         protected IKernel Kernel
         {
             get
@@ -34,17 +32,6 @@ namespace ChatCore.States
 
         [Inject]
         public IPatternManager PatternManager { get; set; }
-        //{
-        //    get
-        //    {
-        //        if (_PatternManager == null)
-        //        {
-        //            var patternManagerClassName = System.Configuration.ConfigurationManager.AppSettings["IPatternManage"];
-        //            _PatternManager = Activator.CreateInstance(Type.GetType(patternManagerClassName)) as IPatternManager;
-        //        }
-        //        return _PatternManager;
-        //    }
-        //}
 
         public void Handle(Message msg) { }
 
@@ -66,6 +53,20 @@ namespace ChatCore.States
 
         public abstract void Handle(TalkSession session, RequestMessage msg);
 
-        public abstract ReplyMessage Message { get; }
+        public virtual ReplyMessage Message
+        {
+            get
+            {
+                Random r = new Random(DateTime.Now.Millisecond);
+                List<StateMessage> msgs = StateMessageRepositary.Messages(this, _TalkSession.Language);
+                return new ReplyTextMessage()
+                {
+                    From = _TalkSession.To,
+                    To = _TalkSession.From,
+                    SentTime = DateTime.Now,
+                    Content = msgs[r.Next(0, msgs.Count)].Content
+                };
+            }
+        }
     }
 }

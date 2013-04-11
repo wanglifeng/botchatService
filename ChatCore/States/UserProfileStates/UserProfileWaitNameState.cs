@@ -40,22 +40,5 @@ namespace ChatCore.States.UserProfileStates
                 }
             }
         }
-
-        public override ReplyMessage Message
-        {
-            get
-            {
-                Msgs = StateMessageRepositary.Messages(this, _TalkSession.Language).Select(t => t.Content).ToList();
-                Random r = new Random();
-
-                return new ReplyTextMessage()
-                {
-                    Content = Msgs[r.Next(0, Msgs.Count)],
-                    SentTime = DateTime.Now,
-                    From = _TalkSession.To,
-                    To = _TalkSession.From
-                };
-            }
-        }
     }
 }
