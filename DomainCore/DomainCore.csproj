@@ -98,6 +98,7 @@
     <Compile Include="Models\FeedBack.cs" />
     <Compile Include="Models\Message.cs" />
     <Compile Include="Models\Question.cs" />
+    <Compile Include="Models\StateMessage.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="MsgRepositry.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

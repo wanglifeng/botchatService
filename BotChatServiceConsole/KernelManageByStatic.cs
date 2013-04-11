@@ -11,6 +11,7 @@ using ChatCore.States.UserProfileStates;
 using Me.WLF.IDAL;
 using Me.WLF.DALByStatic;
 using ChatCore.Patterns;
+using ChatCore.Patterns.Validators;
 
 
 namespace ChatCoreConsole
@@ -53,12 +54,15 @@ namespace ChatCoreConsole
             kernel.Bind<TalkSession>().ToSelf();
             kernel.Bind<IUserRepositary>().To<UserRepositaryDALByStatic>();
             kernel.Bind<ITalkSessionRepositry>().To<TalkSessionRepositryByStaticClass>();
-
+            kernel.Bind<ChineseLastNameValidator>().ToSelf();
+            kernel.Bind<IChineseLastNameRepositary>().To<ChineseLastNameRepositaryByStaticClass>();
             kernel.Bind<IStateMessageRepositary>().To<StateMessageRepositaryByStatic>();
             kernel.Bind<IFeedBackRepositary>().To<FeedBackRepositaryByStatic>();
 
             kernel.Bind<MessageRequestContext>().ToSelf();
             kernel.Bind<IPatternManager>().To<PatternManager>();
+
+
 
             return kernel;
 

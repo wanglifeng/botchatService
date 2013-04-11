@@ -18,18 +18,7 @@ namespace ChatCore.States.UserProfileStates
         private List<String> Msgs = null;
 
         [Inject]
-        private IUserRepositary UserRepositary { get; set; }
-
-        public UserProfileWaitNameState()
-        {
-            Msgs = new List<string>
-            {
-                "请输入名字吧",
-                "你叫什么名字呀?",
-                "你的名字?",
-                "What's your name?"
-            };
-        }
+        public IUserRepositary UserRepositary { get; set; }
 
         public override void Handle(TalkSession session, RequestMessage msg)
         {
@@ -42,8 +31,12 @@ namespace ChatCore.States.UserProfileStates
                     user.Name = m.Content;
                     UserRepositary.Save(user);
                     var state = Kernel.Get<UserProfileState>();
-                    state.PreMsg = "输入成功";
+                    state.PreMsg = "Saved";
                     session.State = state;
+                }
+                else
+                {
+                    PreMsg = "failured";
                 }
             }
         }
@@ -52,6 +45,7 @@ namespace ChatCore.States.UserProfileStates
         {
             get
             {
+                Msgs = StateMessageRepositary.Messages(this, _TalkSession.Language).Select(t => t.Content).ToList();
                 Random r = new Random();
 
                 return new ReplyTextMessage()

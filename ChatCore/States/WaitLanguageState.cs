@@ -38,14 +38,14 @@ namespace ChatCore.States
         {
             get
             {
-                List<String> messages = Repositary.Messages(this.GetType().Name, _TalkSession.Language.ToString());
+                List<StateMessage> messages = Repositary.Messages(this, _TalkSession.Language);
                 Random r = new Random(DateTime.Now.Millisecond);
                 string c = string.Empty;
                 if (!String.IsNullOrEmpty(PreMsg))
                     c = PreMsg + "\n";
                 return new ReplyTextMessage()
                 {
-                    Content = c + messages[r.Next(0, messages.Count - 1)],
+                    Content = c + messages[r.Next(0, messages.Count - 1)].Content,
                     SentTime = DateTime.Now,
                     From = _TalkSession.To,
                     To = _TalkSession.From

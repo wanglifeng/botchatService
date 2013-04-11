@@ -67,6 +67,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ChineseLastNameRepositaryByStaticClass.cs" />
+    <Compile Include="ChineseLastNameValidatorByStaticClass.cs" />
     <Compile Include="KernelManageByStatic.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

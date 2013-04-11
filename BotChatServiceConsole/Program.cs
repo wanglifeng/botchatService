@@ -19,8 +19,9 @@ namespace ChatCoreConsole
         public static void Main(String[] args)
         {
             var kernel = KernelManager.Kernel;
-            
+            Console.WriteLine("Please input message");
             string msg = Console.ReadLine();
+
             MessageHandler handler = new MessageHandler();
             var request = kernel.Get<MessageRequestContext>();
 
@@ -29,17 +30,33 @@ namespace ChatCoreConsole
             while (!string.IsNullOrEmpty(msg))
             {
                 request = kernel.Get<MessageRequestContext>();
-                request.MessageRequest = new RequestTextMessage()
+                if (msg != "subscribe")
                 {
-                    From = "wanglifeng",
-                    To = "weichat",
-                    Content = msg,
-                    ClientId = "Console",
-                    SentTime = DateTime.Now
-                };
+                    request.MessageRequest = new RequestTextMessage()
+                    {
+                        From = "wanglifeng",
+                        To = "wechat",
+                        Content = msg,
+                        ClientId = "Console",
+                        SentTime = DateTime.Now
+                    };
+                }
+                else
+                {
+                    request.MessageRequest = new RequestEventMessage()
+                    {
+                        From = "wanglifeng",
+                        ClientId = "console",
+                        MsgType = RequestMessage.MessageType.@event,
+                        Event = "subscribe",
+                        SentTime = DateTime.Now,
+                        To = "wechat"
+                    };
+                }
                 handler.HandleRequest(request, response);
 
                 Console.WriteLine(JsonConvert.SerializeObject(response.ReplyMessage));
+
                 msg = Console.ReadLine();
 
             }

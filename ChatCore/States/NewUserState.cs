@@ -13,12 +13,14 @@ namespace ChatCore.States
         {
             get
             {
+                Random r = new Random(DateTime.Now.Millisecond);
+                List<StateMessage> msgs = StateMessageRepositary.Messages(this, _TalkSession.Language);
                 return new ReplyTextMessage()
                 {
                     From = _TalkSession.To,
                     To = _TalkSession.From,
                     SentTime = DateTime.Now,
-                    Content = "欢迎您的加入"
+                    Content = msgs[r.Next(0, msgs.Count)].Content
                 };
             }
         }

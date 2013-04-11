@@ -43,6 +43,7 @@
     <Compile Include="IChineseLastNameRepositary.cs" />
     <Compile Include="IFeedBackRepositary.cs" />
     <Compile Include="IMessageRepositary.cs" />
+    <Compile Include="IMessagesRepositary.cs" />
     <Compile Include="IStateMessageRepositary.cs" />
     <Compile Include="IUserRepositary.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

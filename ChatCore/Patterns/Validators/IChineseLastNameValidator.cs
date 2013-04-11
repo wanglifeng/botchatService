@@ -8,13 +8,15 @@ using ChatCore.Models;
 
 namespace ChatCore.Patterns.Validators
 {
-    class IChineseLastNameValidator : IValidator
+    public class ChineseLastNameValidator : IValidator
     {
         [Inject]
         public IChineseLastNameRepositary ChineseLastNameRepositary { get; set; }
 
         public bool Valid(string value, List<ErrorCodes> msg)
         {
+            msg = new List<ErrorCodes>();
+
             if (string.IsNullOrEmpty(value))
                 msg.Add(ErrorCodes.CHINESE_NAME_EMPTY);
             else if (value.Length < 2)

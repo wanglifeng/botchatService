@@ -45,6 +45,14 @@ namespace ChatCore.States
                     session.State = Kernel.Get<NewState>();
                 }
             }
+            else if (msg is RequestEventMessage)
+            {
+                RequestEventMessage m = msg as RequestEventMessage;
+                if (m.Event == "subscribe")
+                {
+                    session.State = Kernel.Get<NewUserState>();
+                }
+            }
         }
 
         public override ReplyMessage Message

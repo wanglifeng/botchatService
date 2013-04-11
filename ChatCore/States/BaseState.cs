@@ -9,6 +9,7 @@ using ChatCore.Patterns;
 using Me.WLF.Model;
 using Ninject;
 using System.Configuration;
+using Me.WLF.IDAL;
 
 namespace ChatCore.States
 {
@@ -18,7 +19,10 @@ namespace ChatCore.States
 
         protected TalkSession _TalkSession { get; set; }
 
-        private IPatternManager _PatternManager;
+        [Inject]
+        public IStateMessageRepositary StateMessageRepositary { get; set; }
+
+        //private IPatternManager _PatternManager;
 
         protected IKernel Kernel
         {
@@ -29,18 +33,18 @@ namespace ChatCore.States
         }
 
         [Inject]
-        protected IPatternManager PatternManager
-        {
-            get
-            {
-                if (_PatternManager == null)
-                {
-                    var patternManagerClassName = System.Configuration.ConfigurationManager.AppSettings["IPatternManage"];
-                    _PatternManager = Activator.CreateInstance(Type.GetType(patternManagerClassName)) as IPatternManager;
-                }
-                return _PatternManager;
-            }
-        }
+        public IPatternManager PatternManager { get; set; }
+        //{
+        //    get
+        //    {
+        //        if (_PatternManager == null)
+        //        {
+        //            var patternManagerClassName = System.Configuration.ConfigurationManager.AppSettings["IPatternManage"];
+        //            _PatternManager = Activator.CreateInstance(Type.GetType(patternManagerClassName)) as IPatternManager;
+        //        }
+        //        return _PatternManager;
+        //    }
+        //}
 
         public void Handle(Message msg) { }
 
@@ -48,7 +52,7 @@ namespace ChatCore.States
         {
             _TalkSession = session;
             session.LastMessage = msg;
-            if (session.Language == Language.None && !(session.State is WaitLanguageState))
+            if (msg is RequestTextMessage && session.Language == Language.None && !(session.State is WaitLanguageState))
             {
                 session.State = Kernel.Get<WaitLanguageState>();
             }

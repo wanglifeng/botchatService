@@ -16,6 +16,16 @@ namespace BotChatService.Models
         public MsgType MsgType { get; set; }
         public int FuncFlag { get; set; }
 
+
+        protected WeChatRequestMessage(XmlDocument doc)
+        {
+            FromUserName = doc.SelectSingleNode("/xml/FromUserName").InnerText;
+            ToUserName = doc.SelectSingleNode("/xml/ToUserName").InnerText;
+            MsgType = MsgType.Text;
+            double timeStamp = double.Parse(doc.SelectSingleNode("/xml/CreateTime").InnerText);
+            CreateTime = (new DateTime(1970, 1, 1).AddSeconds(timeStamp).ToLocalTime());
+        }
+
         public static WeChatRequestMessage CreateFromXml(String xmlContent)
         {
             if (!String.IsNullOrEmpty(xmlContent))
@@ -58,9 +68,8 @@ namespace BotChatService.Models
     {
         public String Content { get; set; }
 
-        public WeChatRequestTextMessage() { }
-
         public WeChatRequestTextMessage(XmlDocument doc)
+            : base(doc)
         {
             FromUserName = doc.SelectSingleNode("/xml/FromUserName").InnerText;
             ToUserName = doc.SelectSingleNode("/xml/ToUserName").InnerText;
@@ -71,10 +80,25 @@ namespace BotChatService.Models
         }
     }
 
+    public class WeChatRequestEventMessage : WeChatRequestMessage
+    {
+        public String EventKey { get; set; }
+        public String Event { get; set; }
+
+        public WeChatRequestEventMessage(XmlDocument doc)
+            : base(doc)
+        {
+
+            Event = doc.SelectSingleNode("/xml/Event").InnerText;
+            EventKey = doc.SelectSingleNode("/xml/EventKey").InnerText;
+        }
+    }
+
     public enum MsgType
     {
         Text,
         Pic,
-        Locaton
+        Locaton,
+        Event
     }
 }

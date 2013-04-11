@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 
 using System.Threading;
+using Me.WLF.Model;
 
 namespace ChatCore
 {
@@ -12,7 +13,13 @@ namespace ChatCore
         public void HandleRequest(MessageRequestContext requestContext, MessageReplyContext responseContext)
         {
             requestContext.Session.Request(requestContext.MessageRequest);
-            responseContext.ReplyMessage = requestContext.Session.ReplyMessage;
+            var msg = requestContext.Session.ReplyMessage;
+            if (msg is ReplyTextMessage)
+            {
+                if (!String.IsNullOrEmpty(requestContext.Session.State.PreMsg))
+                    (msg as ReplyTextMessage).Content = string.Format("{0}\n{1}", requestContext.Session.State.PreMsg, (msg as ReplyTextMessage).Content);
+            }
+            responseContext.ReplyMessage = msg;
         }
     }
 }

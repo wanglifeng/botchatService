@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Me.WLF.Model;
+using Ninject;
 
 namespace ChatCore.States.UserProfileStates
 {
@@ -21,13 +22,13 @@ namespace ChatCore.States.UserProfileStates
                 if (!String.IsNullOrEmpty(m.Content))
                 {
                     if (m.Content == "1")
-                        session.State = new UserProfileWaitNameState();
+                        session.State = Kernel.Get<UserProfileWaitNameState>();
                     else if (m.Content == "2")
-                        session.State = new UserProfileWaitNameState();
+                        session.State = Kernel.Get<UserProfileWaitNameState>();
 
                 }
             }
-            PreMsg = "输入错误~";
+            PreMsg = "you must entern 1 or 2 ~";
         }
 
         public override ReplyMessage Message

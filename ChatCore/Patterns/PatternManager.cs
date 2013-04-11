@@ -13,7 +13,7 @@ namespace ChatCore.Patterns
         private List<ErrorCodes> _Messages = new List<ErrorCodes>();
 
         [Inject]
-        private IChineseLastNameValidator ChineseLastNameValidator { get; set; }
+        public ChineseLastNameValidator ChineseLastNameValidator { get; set; }
 
         public bool IsChineseLastName(string value)
         {

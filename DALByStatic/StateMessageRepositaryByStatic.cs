@@ -3,16 +3,20 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Me.WLF.Model;
 
 namespace Me.WLF.DALByStatic
 {
     public class StateMessageRepositaryByStatic : IStateMessageRepositary
     {
-        public List<string> Messages(string stateName, string language)
+        public List<StateMessage> Messages(object state, Language language)
         {
-            return new List<String>
+            return new List<StateMessage>
             {
-                 String.Format("{0}======={1}",stateName,language)
+                 new StateMessage(){ 
+                     Content= String.Format("{0}======={1}",state.GetType().FullName,language),
+                      Language=language
+                 }
             };
         }
     }
