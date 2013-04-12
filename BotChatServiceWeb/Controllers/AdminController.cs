@@ -1,5 +1,4 @@
-﻿using BotChatService.App_Start;
-using BotChatService.Models;
+﻿using BotChatServiceWeb.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +8,7 @@ using Ninject;
 using Me.WLF.IDAL;
 using ChatCore;
 
-namespace BotChatService.Controllers
+namespace BotChatServiceWeb.Controllers
 {
     public class AdminController : Controller
     {

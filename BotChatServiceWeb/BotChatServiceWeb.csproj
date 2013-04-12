@@ -11,8 +11,8 @@
     <ProjectTypeGuids>{E3E379DF-F4C6-4180-9B81-6769533ABE47};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>BotChatService</RootNamespace>
-    <AssemblyName>BotChatService</AssemblyName>
+    <RootNamespace>BotChatServiceWeb</RootNamespace>
+    <AssemblyName>BotChatServiceWeb</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>false</UseIISExpress>
@@ -39,9 +39,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Enyim.Caching">
-      <HintPath>..\packages\EnyimMemcached.2.12\lib\net35\Enyim.Caching.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="NewRelic.Api.Agent">
       <HintPath>..\packages\NewRelic.Agent.Api.x86.2.1.2.472\lib\net20\NewRelic.Api.Agent.dll</HintPath>
@@ -65,11 +62,9 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Abstractions" />
     <Reference Include="System.Web.Routing" />
-    <Reference Include="System.Xml" />
     <Reference Include="System.Configuration" />
     <Reference Include="EntityFramework">
       <HintPath>..\packages\EntityFramework.5.0.0\lib\net40\EntityFramework.dll</HintPath>
@@ -128,21 +123,12 @@
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.Razor.dll</HintPath>
     </Reference>
-    <Reference Include="WebActivator">
-      <HintPath>..\packages\WebActivator.1.5.3\lib\net40\WebActivator.dll</HintPath>
-    </Reference>
-    <Reference Include="WebGrease">
-      <Private>True</Private>
-      <HintPath>..\packages\WebGrease.1.1.0\lib\WebGrease.dll</HintPath>
-    </Reference>
+    <Reference Include="System.XML" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
-    <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="App_Start\UserRepositaryByStaticClass.cs" />
-    <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\ChineseLastNameController.cs" />
     <Compile Include="Controllers\FeedBackController.cs" />
@@ -155,7 +141,6 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="KernelManageByDB.cs" />
-    <Compile Include="Models\ManageController.cs" />
     <Compile Include="Models\UserModels.cs" />
     <Compile Include="Models\WeChatRequestMessage.cs" />
     <Compile Include="Models\WeChatResponseMessage.cs" />
@@ -285,9 +270,7 @@
     <Content Include="Views\Main\Index.cshtml" />
     <Content Include="Views\FeedBack\Index.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>

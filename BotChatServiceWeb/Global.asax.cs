@@ -13,7 +13,7 @@ using Ninject;
 using Me.WLF.IDAL;
 using DomainCore;
 
-namespace BotChatService
+namespace BotChatServiceWeb
 {
     // Note: For instructions on enabling IIS6 or IIS7 classic mode, 
     // visit http://go.microsoft.com/?LinkId=9394801
@@ -24,23 +24,9 @@ namespace BotChatService
         {
             AreaRegistration.RegisterAllAreas();
 
-            WebApiConfig.Register(GlobalConfiguration.Configuration);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
-
-            Thread t = new Thread(() =>
-                {
-                    while (true)
-                    {
-                        IUserRepositary repo = new UserRepositaryByDB();
-                        int i = repo.List().Count;
-                        Thread.Sleep(60000);
-                    }
-
-                });
-            t.IsBackground = true;
-            t.Start();
         }
     }
 }

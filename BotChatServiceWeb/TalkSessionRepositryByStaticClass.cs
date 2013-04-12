@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace BotChatService
+namespace BotChatServiceWeb
 {
     public class TalkSessionRepositryByStaticClass : ITalkSessionRepositry
     {

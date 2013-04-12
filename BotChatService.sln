@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BotChatService", "BotChatService\BotChatService.csproj", "{3607C66E-620A-4A6B-98B2-73770D45D7F6}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BotChatServiceWeb", "BotChatServiceWeb\BotChatServiceWeb.csproj", "{3607C66E-620A-4A6B-98B2-73770D45D7F6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChatCore", "ChatCore\ChatCore.csproj", "{AD022630-7F05-4558-AB44-9324696C3461}"
 EndProject

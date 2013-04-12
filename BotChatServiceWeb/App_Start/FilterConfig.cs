@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Mvc;
 
-namespace BotChatService
+namespace BotChatServiceWeb
 {
     public class FilterConfig
     {

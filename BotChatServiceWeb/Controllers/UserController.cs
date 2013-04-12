@@ -6,7 +6,7 @@ using System.Web.Mvc;
 using DomainCore;
 using Me.WLF.IDAL;
 
-namespace BotChatService.Controllers
+namespace BotChatServiceWeb.Controllers
 {
     public class UserController : Controller
     {

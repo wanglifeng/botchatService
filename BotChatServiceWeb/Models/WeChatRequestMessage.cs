@@ -6,7 +6,7 @@ using System.Xml;
 
 using Me.WLF.Model;
 
-namespace BotChatService.Models
+namespace BotChatServiceWeb.Models
 {
     public abstract class WeChatRequestMessage
     {

@@ -1,7 +1,7 @@
 ﻿using System.Web;
 using System.Web.Optimization;
 
-namespace BotChatService
+namespace BotChatServiceWeb
 {
     public class BundleConfig
     {

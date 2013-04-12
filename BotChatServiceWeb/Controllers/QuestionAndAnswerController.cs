@@ -6,7 +6,7 @@ using System.Web.Mvc;
 using DomainCore;
 using DomainCore.Models;
 
-namespace BotChatService.Controllers
+namespace BotChatServiceWeb.Controllers
 {
     public class QuestionAndAnswerController : Controller
     {

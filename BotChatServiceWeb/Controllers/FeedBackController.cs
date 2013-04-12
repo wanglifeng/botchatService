@@ -7,7 +7,7 @@ using System.Web.Mvc;
 using Me.WLF.IDAL;
 using DomainCore;
 
-namespace BotChatService.Controllers
+namespace BotChatServiceWeb.Controllers
 {
     public class FeedBackController : Controller
     {

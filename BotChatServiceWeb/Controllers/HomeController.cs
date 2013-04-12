@@ -4,17 +4,13 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace BotChatService.Controllers
+namespace BotChatServiceWeb.Controllers
 {
-    public class MainController : Controller
+    public class HomeController : Controller
     {
-        //
-        // GET: /Main/
-
         public ActionResult Index()
         {
-            return View();
+            return Redirect("Admin");
         }
-
     }
 }

@@ -12,7 +12,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace BotChatService
+namespace BotChatServiceWeb
 {
     public class KernelManageByDB : IKernelManager
     {
@@ -52,7 +52,7 @@ namespace BotChatService
             kernel.Bind<TalkSession>().ToSelf();
             kernel.Bind<IUserRepositary>().To<UserRepositaryByDB>();
             kernel.Bind<ITalkSessionRepositry>().To<TalkSessionRepositryByStaticClass>();
-
+            kernel.Bind<IChineseLastNameRepositary>().To<ChineseLastNameRepositaryByDB>();
             kernel.Bind<IStateMessageRepositary>().To<StateMessageRepositaryByStatic>();
             kernel.Bind<IFeedBackRepositary>().To<FeedBackRepositaryByDB>();
 

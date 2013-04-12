@@ -7,7 +7,7 @@ using DomainCore;
 using Me.WLF.IDAL;
 using Me.WLF.Model;
 
-namespace BotChatService.Controllers
+namespace BotChatServiceWeb.Controllers
 {
     public class ChineseLastNameController : Controller
     {

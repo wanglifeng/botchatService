@@ -8,7 +8,7 @@ using System.Text;
 using System.Web;
 using System.Xml;
 
-namespace BotChatService.Models
+namespace BotChatServiceWeb.Models
 {
     public abstract class WeChatResponseMessage
     {
