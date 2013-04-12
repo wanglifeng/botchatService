@@ -39,14 +39,15 @@ namespace ChatCore.States
         {
             _TalkSession = session;
             session.LastMessage = msg;
-            if (msg is RequestTextMessage && session.Language == Language.None && !(session.State is WaitLanguageState))
-            {
-                session.State = Kernel.Get<WaitLanguageState>();
-            }
-            else
-            {
-                Handle(session, msg);
-            }
+            //if (msg is RequestTextMessage && session.Language == Language.None && !(session.State is WaitLanguageState))
+            //{
+            //    session.State = Kernel.Get<WaitLanguageState>();
+            //}
+            //else
+            //{
+            //    Handle(session, msg);
+            //}
+            Handle(session, msg);
 
             session.State._TalkSession = session;
         }
