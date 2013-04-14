@@ -39,17 +39,7 @@ namespace ChatCore.States
         {
             _TalkSession = session;
             _TalkSession.LastMessage = msg;
-            //if (msg is RequestTextMessage && session.Language == Language.None && !(session.State is WaitLanguageState))
-            //{
-            //    session.State = Kernel.Get<WaitLanguageState>();
-            //}
-            //else
-            //{
-            //    Handle(_TalkSession, msg);
-            //}
             Handle(_TalkSession, msg);
-            this._TalkSession = _TalkSession;
-            //session.State._TalkSession = session;
         }
 
         public abstract void Handle(TalkSession session, RequestMessage msg);

@@ -38,19 +38,17 @@ namespace ChatCore.States
         {
             get
             {
-                List<StateMessage> messages = Repositary.Messages(this, _TalkSession.Language);
-                Random r = new Random(DateTime.Now.Millisecond);
-                string c = string.Empty;
-                if (!String.IsNullOrEmpty(PreMsg))
-                    c = PreMsg + "\n";
-                return new ReplyTextMessage()
+                if (_TalkSession.Language == Language.None)
                 {
-                    Content = c + messages[r.Next(0, messages.Count - 1)].Content,
-                    SentTime = DateTime.Now,
-                    From = _TalkSession.To,
-                    To = _TalkSession.From
-                };
-
+                    return new ReplyTextMessage()
+                    {
+                        Content = "输入 Chinese 或 中文 设置您的语言为中文，输入 English 或 英文 设置您的语言为英文",
+                        From = _TalkSession.To,
+                        To = _TalkSession.From,
+                        SentTime = DateTime.Now
+                    };
+                }
+                return base.Message;
             }
         }
     }

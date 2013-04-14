@@ -10,5 +10,7 @@ namespace Me.WLF.Model
         public int Id { get; set; }
         public String Content { get; set; }
         public Language Language { get; set; }
+
+        public State State { get; set; }
     }
 }

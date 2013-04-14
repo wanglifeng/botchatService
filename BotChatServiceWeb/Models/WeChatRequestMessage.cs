@@ -39,6 +39,8 @@ namespace BotChatServiceWeb.Models
                     {
                         case "text":
                             return new WeChatRequestTextMessage(doc);
+                        case "event":
+                            return new WeChatRequestEventMessage(doc);
                     }
                 }
             }
@@ -53,6 +55,19 @@ namespace BotChatServiceWeb.Models
                 return new RequestTextMessage()
                 {
                     Content = m.Content,
+                    From = m.FromUserName,
+                    MsgType = RequestMessage.MessageType.text,
+                    SentTime = m.CreateTime,
+                    To = m.ToUserName,
+                    ClientId = "WeChat"
+                };
+            }
+            else if (message is WeChatRequestEventMessage)
+            {
+                var m = message as WeChatRequestEventMessage;
+                return new RequestEventMessage()
+                {
+                    Event = m.Event,
                     From = m.FromUserName,
                     MsgType = RequestMessage.MessageType.text,
                     SentTime = m.CreateTime,

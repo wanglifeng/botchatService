@@ -45,6 +45,7 @@
     <Compile Include="IMessageRepositary.cs" />
     <Compile Include="IMessagesRepositary.cs" />
     <Compile Include="IStateMessageRepositary.cs" />
+    <Compile Include="IStateRepostatry.cs" />
     <Compile Include="IUserRepositary.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

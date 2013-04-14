@@ -1,0 +1,27 @@
+﻿@model BotChatServiceWeb.Models.StateMessageAddModel
+
+@{
+    ViewBag.Title = "Add";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+@section NavState
+{
+    class="active"
+}
+
+<form class="form-search" method="post">
+    <fieldset>
+        <legend>StateMessages</legend>
+        @Html.LabelFor(model => model.Content, new { @class = "control-label" })
+        @Html.EditorFor(model => model.Content)
+        @Html.LabelFor(model => model.Language)
+        @Html.DropDownListFor(model => model.Language, ViewBag.Languages as IEnumerable<SelectListItem>)
+        @Html.HiddenFor(model => model.StateId)
+
+        <button type="submit" class="btn">Add</button>
+    </fieldset>
+</form>
+
+<div>
+    @Html.ActionLink("Back to List", "Index", new { Id = ViewBag.StateId })
+</div>

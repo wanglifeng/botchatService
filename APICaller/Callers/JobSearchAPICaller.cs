@@ -17,7 +17,7 @@ namespace APICaller.Callers
 
         private bool Search(string developerKey, IClient client, JobSearchRequest request, out JobSearchResponse response)
         {
-            string url = "http://api.careerbuilder.com/v1/jobsearch";
+            string url = "http://api.careerbuilder.com.cn/v1/jobsearch";
             request.DeveloperKey = developerKey;
             client.SentAndGetResponse<JobSearchRequest, JobSearchResponse>(url, Method.GET, request, out response);
             return true;

@@ -21,6 +21,8 @@ namespace DomainCore.Models
         [MaxLength(5)]
         public String Degree { get; set; }
 
+        public DateTime RegisterTime { get; set; }
+
         [MaxLength(10)]
         public String Language { get; set; }
 
@@ -34,7 +36,8 @@ namespace DomainCore.Models
                 Degree = u.Degree,
                 Id = u.Id,
                 UserName = u.UserName,
-                Language = u.Language.ToString()
+                Language = u.Language.ToString(),
+                RegisterTime = u.RegisterTime
             };
         }
 
@@ -48,7 +51,8 @@ namespace DomainCore.Models
                 Degree = u.Degree,
                 Id = u.Id,
                 UserName = u.UserName,
-                Language = (Me.WLF.Model.Language)Enum.Parse(typeof(Me.WLF.Model.Language), u.Language, true)
+                Language = (Me.WLF.Model.Language)Enum.Parse(typeof(Me.WLF.Model.Language), u.Language, true),
+                RegisterTime = u.RegisterTime
             };
         }
     }

@@ -10,7 +10,7 @@
         <th>User</th>
         <th>State</th>
         <th>Last Activity DT</th>
-        <th>Last Message</th>
+        <th>Management</th>
     </tr>
     @foreach (var t in Model)
     {
@@ -20,7 +20,7 @@
                 @t.State.ToString()
             </td>
             <td>@t.LastActivityDT</td>
-            <td>@Newtonsoft.Json.JsonConvert.SerializeObject(t.LastMessage)</td>
+            <td>@Html.ActionLink("Del", "Del", new { From = @t.From })</td>
         </tr>
     }
 </table>

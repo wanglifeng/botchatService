@@ -17,5 +17,12 @@ namespace BotChatServiceWeb.Controllers
             return View(sessions.AllSessions());
         }
 
+        public ActionResult Del(string from)
+        {
+            ITalkSessionRepositry sessions = Kernel.Get<ITalkSessionRepositry>();
+            sessions.Remove(from);
+            return RedirectToAction("Index");
+        }
+
     }
 }

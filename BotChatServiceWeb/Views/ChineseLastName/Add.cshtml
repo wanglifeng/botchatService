@@ -4,10 +4,14 @@
     ViewBag.Title = "Add";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
+@section NavChineseName
+{
+class="active"
+}
 
 <form class="form-search" method="post">
     <fieldset>
-        <legend>ChineseLastName</legend>
+        <legend>Add Valid Chinese LastName</legend>
         @Html.LabelFor(model => model.LastName, new { @class = "control-label" })
         @Html.EditorFor(model => model.LastName)
         <button type="submit" class="btn">Add</button>
@@ -15,5 +19,5 @@
 </form>
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to List", "Index", null, new {@class="btn" })
 </div>

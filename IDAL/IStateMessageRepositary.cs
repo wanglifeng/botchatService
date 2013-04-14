@@ -9,5 +9,9 @@ namespace Me.WLF.IDAL
     public interface IStateMessageRepositary
     {
         List<StateMessage> Messages(object state, Language language);
+        List<StateMessage> Messages(int stateId);
+        void Save(StateMessage msg);
+
+        void Del(int id);
     }
 }

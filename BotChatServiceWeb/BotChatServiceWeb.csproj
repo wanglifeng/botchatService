@@ -143,6 +143,7 @@
     <Compile Include="Controllers\MainController.cs" />
     <Compile Include="Controllers\MessagesController.cs" />
     <Compile Include="Controllers\QuestionAndAnswerController.cs" />
+    <Compile Include="Controllers\StateController.cs" />
     <Compile Include="Controllers\StateMessageController.cs" />
     <Compile Include="Controllers\TalkSessionController.cs" />
     <Compile Include="Controllers\UserController.cs" />
@@ -150,6 +151,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="KernelManageByDB.cs" />
+    <Compile Include="Models\StateMessageModels.cs" />
     <Compile Include="Models\UserModels.cs" />
     <Compile Include="Models\WeChatRequestMessage.cs" />
     <Compile Include="Models\WeChatResponseMessage.cs" />
@@ -280,6 +282,8 @@
     <Content Include="Views\FeedBack\Index.cshtml" />
     <Content Include="Views\StateMessage\Index.cshtml" />
     <Content Include="Views\TalkSession\Index.cshtml" />
+    <Content Include="Views\State\Index.cshtml" />
+    <Content Include="Views\StateMessage\Add.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

@@ -5,17 +5,17 @@
 <div class="navbar">
     <div class="navbar-inner">
         <ul class="nav">
-            <li>@Html.ActionLink("Chinese LastName Management", "Index", "ChineseLastName")</li>
+            <li @RenderSection("NavChineseName", false)>@Html.ActionLink("Chinese LastName Management", "Index", "ChineseLastName")</li>
             <li class="divider-vertical"></li>
-            <li>@Html.ActionLink("Users", "Index", "User")</li>
+            <li @RenderSection("NavUser", false)>@Html.ActionLink("Users", "Index", "User")</li>
             <li class="divider-vertical"></li>
-            <li>@Html.ActionLink("Questions", "Index", "QuestionAndAnswer")</li>
+            <li @RenderSection("NavQuestion", false)>@Html.ActionLink("Questions", "Index", "QuestionAndAnswer")</li>
             <li class="divider-vertical"></li>
-            <li>@Html.ActionLink("FeedBacks", "Index", "FeedBack")</li>
+            <li @RenderSection("NavFeedBack", false)>@Html.ActionLink("FeedBacks", "Index", "FeedBack")</li>
             <li class="divider-vertical"></li>
-            <li>@Html.ActionLink("StateMessages", "Index", "StateMessage")</li>
+            <li @RenderSection("NavState", false)>@Html.ActionLink("State", "Index", "State")</li>
             <li class="divider-vertical"></li>
-            <li>@Html.ActionLink("TalkSession", "Index", "TalkSession")</li>
+            <li @RenderSection("NavTalkSession", false)>@Html.ActionLink("TalkSession", "Index", "TalkSession")</li>
         </ul>
     </div>
 

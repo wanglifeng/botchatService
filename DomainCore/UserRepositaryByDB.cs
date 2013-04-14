@@ -10,6 +10,8 @@ namespace DomainCore
 {
     public class UserRepositaryByDB : IUserRepositary
     {
+        private object _LockObj = new object();
+
         public User GetById(int id)
         {
             using (ChatContext c = new ChatContext())
@@ -30,7 +32,14 @@ namespace DomainCore
                 var u = c.Users.SingleOrDefault(t => t.UserName == user.UserName);
                 if (u == null)
                 {
-                    c.Users.Add((Models.User)user);
+                    lock (_LockObj)
+                    {
+                        u = c.Users.SingleOrDefault(t => t.UserName == user.UserName);
+                        if (u == null)
+                        {
+                            c.Users.Add((Models.User)user);
+                        }
+                    }
                 }
                 else
                 {

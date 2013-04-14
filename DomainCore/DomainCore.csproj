@@ -92,12 +92,25 @@
     <Compile Include="Migrations\201303201728070_Add_Language_Into_User_Class.Designer.cs">
       <DependentUpon>201303201728070_Add_Language_Into_User_Class.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201304140609236_Add_class_State_Messages.cs" />
+    <Compile Include="Migrations\201304140609236_Add_class_State_Messages.Designer.cs">
+      <DependentUpon>201304140609236_Add_class_State_Messages.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201304140735297_Change_class_State_Messages_Language_Column.cs" />
+    <Compile Include="Migrations\201304140735297_Change_class_State_Messages_Language_Column.Designer.cs">
+      <DependentUpon>201304140735297_Change_class_State_Messages_Language_Column.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201304141104555_Add_registerTime_Into_User.cs" />
+    <Compile Include="Migrations\201304141104555_Add_registerTime_Into_User.Designer.cs">
+      <DependentUpon>201304141104555_Add_registerTime_Into_User.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Admin.cs" />
     <Compile Include="Models\ChineseLastName.cs" />
     <Compile Include="Models\FeedBack.cs" />
     <Compile Include="Models\Message.cs" />
     <Compile Include="Models\Question.cs" />
+    <Compile Include="Models\State.cs" />
     <Compile Include="Models\StateMessage.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="MsgRepositry.cs" />
@@ -112,6 +125,8 @@
     <Compile Include="Repositaries\Translators\Job\PageNumberTranslator.cs" />
     <Compile Include="SearchTransaction.cs" />
     <Compile Include="SHA1Algorithm.cs" />
+    <Compile Include="StateMessageRepositaryByDB.cs" />
+    <Compile Include="StateRepostatryByDB.cs" />
     <Compile Include="UserRepositaryByDB.cs" />
     <Compile Include="WeiChatRequest.cs" />
   </ItemGroup>
@@ -154,6 +169,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201303201728070_Add_Language_Into_User_Class.resx">
       <DependentUpon>201303201728070_Add_Language_Into_User_Class.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201304140609236_Add_class_State_Messages.resx">
+      <DependentUpon>201304140609236_Add_class_State_Messages.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201304140735297_Change_class_State_Messages_Language_Column.resx">
+      <DependentUpon>201304140735297_Change_class_State_Messages_Language_Column.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201304141104555_Add_registerTime_Into_User.resx">
+      <DependentUpon>201304141104555_Add_registerTime_Into_User.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

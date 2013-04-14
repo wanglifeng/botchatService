@@ -19,5 +19,24 @@ namespace Me.WLF.DALByStatic
                  }
             };
         }
+
+
+
+        public List<StateMessage> Messages(int stateId)
+        {
+            return new List<StateMessage>();
+        }
+
+
+        public void Save(StateMessage msg)
+        {
+            
+        }
+
+
+        public void Del(int id)
+        {
+            
+        }
     }
 }
