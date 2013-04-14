@@ -51,6 +51,7 @@ namespace ChatCoreConsole
             kernel.Bind<JobResultState>().ToSelf();
             kernel.Bind<WaitLanguageState>().ToSelf();
 
+            kernel.Bind<MessageHandler>().ToSelf();
             kernel.Bind<TalkSession>().ToSelf();
             kernel.Bind<IUserRepositary>().To<UserRepositaryDALByStatic>();
             kernel.Bind<ITalkSessionRepositry>().To<TalkSessionRepositryByStaticClass>();

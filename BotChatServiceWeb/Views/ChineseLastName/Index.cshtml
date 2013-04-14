@@ -5,10 +5,9 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h2>Chinese LastNames List</h2>
-
 @Html.ActionLink("Add", "Add")
-<table>
+
+<table class="table table-striped table-bordered table-hover">
     <tr>
         <th>Names</th>
         <th>Management</th>
@@ -17,7 +16,7 @@
     {
         <tr>
             <td>@t.LastName</td>
-            <td>
+            <td class="span1">
                 @Html.ActionLink("Del", "Del", new { Id = @t.Id })
             </td>
         </tr>

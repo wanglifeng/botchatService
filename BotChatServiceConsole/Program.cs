@@ -22,13 +22,12 @@ namespace ChatCoreConsole
             Console.WriteLine("Please input message");
             string msg = Console.ReadLine();
 
-            MessageHandler handler = new MessageHandler();
-            var request = kernel.Get<MessageRequestContext>();
-
-            var response = new MessageReplyContext();
-
             while (!string.IsNullOrEmpty(msg))
             {
+                MessageHandler handler = kernel.Get<MessageHandler>();
+                var request = kernel.Get<MessageRequestContext>();
+                var response = new MessageReplyContext();
+
                 request = kernel.Get<MessageRequestContext>();
                 if (msg != "subscribe")
                 {

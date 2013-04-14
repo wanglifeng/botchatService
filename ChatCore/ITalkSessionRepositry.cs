@@ -9,5 +9,8 @@ namespace ChatCore
     {
         TalkSession Get(String From);
         void Save(TalkSession session);
+        void Remove(string from);
+
+        List<TalkSession> AllSessions();
     }
 }

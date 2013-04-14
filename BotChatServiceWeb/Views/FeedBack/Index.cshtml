@@ -4,8 +4,7 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h2>FeedBacks</h2>
-<table>
+<table class="table table-striped table-bordered table-hover">
     <tr>
         <th>User</th>
         <th>FeedBack</th>
@@ -14,9 +13,9 @@
     @foreach (var t in Model)
     {
         <tr>
-            <td>@t.UserName</td>
+            <td class="span1">@t.UserName</td>
             <td>@t.Content</td>
-            <td>
+            <td class="span1">
                 @Html.ActionLink("Del", "Del", new { Id = @t.Id })
             </td>
         </tr>

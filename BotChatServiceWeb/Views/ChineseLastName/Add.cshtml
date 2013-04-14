@@ -5,27 +5,14 @@
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
-<h2>Add ChineseName</h2>
-
-@using (Html.BeginForm()) {
-    @Html.ValidationSummary(true)
-
+<form class="form-search" method="post">
     <fieldset>
         <legend>ChineseLastName</legend>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.LastName)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.LastName)
-            @Html.ValidationMessageFor(model => model.LastName)
-        </div>
-
-        <p>
-            <input type="submit" value="Create" />
-        </p>
+        @Html.LabelFor(model => model.LastName, new { @class = "control-label" })
+        @Html.EditorFor(model => model.LastName)
+        <button type="submit" class="btn">Add</button>
     </fieldset>
-}
+</form>
 
 <div>
     @Html.ActionLink("Back to List", "Index")

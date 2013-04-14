@@ -130,12 +130,15 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\ChineseLastNameController.cs" />
     <Compile Include="Controllers\FeedBackController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MainController.cs" />
     <Compile Include="Controllers\MessagesController.cs" />
     <Compile Include="Controllers\QuestionAndAnswerController.cs" />
+    <Compile Include="Controllers\StateMessageController.cs" />
+    <Compile Include="Controllers\TalkSessionController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -269,6 +272,8 @@
     <Content Include="Views\QuestionAndAnswer\Add.cshtml" />
     <Content Include="Views\Main\Index.cshtml" />
     <Content Include="Views\FeedBack\Index.cshtml" />
+    <Content Include="Views\StateMessage\Index.cshtml" />
+    <Content Include="Views\TalkSession\Index.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

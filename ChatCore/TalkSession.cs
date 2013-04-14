@@ -16,6 +16,8 @@ namespace ChatCore
     {
         public RequestMessage LastMessage { get; set; }
 
+        public DateTime LastActivityDT { get; set; }
+
         [Inject]
         public IUserRepositary UserRepositary { get; set; }
 
@@ -35,7 +37,11 @@ namespace ChatCore
 
         public void Request(RequestMessage msg)
         {
+            Console.WriteLine("Pre State:{0}", this.State);
             State.Handle(this, msg, string.Empty);
+            Console.WriteLine("Next State:{0}", this.State.GetType());
+            this.State._TalkSession = this;
+            Console.WriteLine(this.State.Message);
         }
         public Language Language
         {

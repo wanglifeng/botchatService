@@ -12,12 +12,29 @@ namespace ChatCoreConsole
 
         public TalkSession Get(string From)
         {
-            return Sessions.SingleOrDefault(t => t.From == From);
+            Console.WriteLine("Get Session {0}", From);
+            return Sessions.FirstOrDefault(t => t.From == From);
         }
 
         public void Save(TalkSession session)
         {
+            Remove(session.From);
+
+            Console.WriteLine("Save Session {0}", session.From);
+
             Sessions.Add(session);
+        }
+
+        public void Remove(string from)
+        {
+            Console.WriteLine("Remove Session {0}", from);
+
+            Sessions.RemoveAll(t => t.From == from);
+        }
+
+        public List<TalkSession> AllSessions()
+        {
+            return Sessions;
         }
     }
 }

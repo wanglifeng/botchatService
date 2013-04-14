@@ -1,4 +1,4 @@
-﻿html {
+﻿/*/*html {
     background-color: #e2e2e2;
     margin: 0;
     padding: 0;
@@ -401,10 +401,6 @@ fieldset {
     padding: 0;
 }
 
-    fieldset legend {
-        display: none;
-    }
-
     fieldset ol {
         padding: 0;
         list-style: none;
@@ -753,4 +749,4 @@ tr.pager td {
         footer p {
             margin: 0;
         }
-}
+}*/*/

@@ -23,8 +23,8 @@ namespace BotChatServiceWeb
             bundles.Add(new ScriptBundle("~/bundles/modernizr").Include(
                         "~/Scripts/modernizr-*"));
 
-            bundles.Add(new StyleBundle("~/Content/css").Include("~/Content/site.css",
-                "~/Content/bootstrap/css/boot*"));
+            bundles.Add(new StyleBundle("~/Content/css").Include(
+                "~/Content/bootstrap/css/bootstrap*"));
 
             bundles.Add(new StyleBundle("~/Content/themes/base/css").Include(
                         "~/Content/themes/base/jquery.ui.core.css",

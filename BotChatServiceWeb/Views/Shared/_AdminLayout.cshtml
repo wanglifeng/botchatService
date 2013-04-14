@@ -2,14 +2,22 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<div class="navbar">
+    <div class="navbar-inner">
+        <ul class="nav">
+            <li>@Html.ActionLink("Chinese LastName Management", "Index", "ChineseLastName")</li>
+            <li class="divider-vertical"></li>
+            <li>@Html.ActionLink("Users", "Index", "User")</li>
+            <li class="divider-vertical"></li>
+            <li>@Html.ActionLink("Questions", "Index", "QuestionAndAnswer")</li>
+            <li class="divider-vertical"></li>
+            <li>@Html.ActionLink("FeedBacks", "Index", "FeedBack")</li>
+            <li class="divider-vertical"></li>
+            <li>@Html.ActionLink("StateMessages", "Index", "StateMessage")</li>
+            <li class="divider-vertical"></li>
+            <li>@Html.ActionLink("TalkSession", "Index", "TalkSession")</li>
+        </ul>
+    </div>
 
-<h2>Welcome Back</h2>
-<ul class="menu">
-    <li>@Html.ActionLink("Chinese LastName Management", "Index", "ChineseLastName")</li>
-    <li>@Html.ActionLink("Users", "Index", "User")</li>
-    <li>@Html.ActionLink("Questions", "Index", "QuestionAndAnswer")</li>
-    <li>@Html.ActionLink("FeedBacks", "Index", "FeedBack")</li>
-</ul>
-<div class="clearBoth"></div>
-
+</div>
 @RenderBody()

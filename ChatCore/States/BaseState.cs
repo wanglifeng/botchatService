@@ -17,7 +17,7 @@ namespace ChatCore.States
     {
         public String PreMsg { get; set; }
 
-        protected TalkSession _TalkSession { get; set; }
+        public TalkSession _TalkSession { get; set; }
 
         [Inject]
         public IStateMessageRepositary StateMessageRepositary { get; set; }
@@ -38,18 +38,18 @@ namespace ChatCore.States
         public void Handle(TalkSession session, RequestMessage msg, string str)
         {
             _TalkSession = session;
-            session.LastMessage = msg;
+            _TalkSession.LastMessage = msg;
             //if (msg is RequestTextMessage && session.Language == Language.None && !(session.State is WaitLanguageState))
             //{
             //    session.State = Kernel.Get<WaitLanguageState>();
             //}
             //else
             //{
-            //    Handle(session, msg);
+            //    Handle(_TalkSession, msg);
             //}
-            Handle(session, msg);
-
-            session.State._TalkSession = session;
+            Handle(_TalkSession, msg);
+            this._TalkSession = _TalkSession;
+            //session.State._TalkSession = session;
         }
 
         public abstract void Handle(TalkSession session, RequestMessage msg);

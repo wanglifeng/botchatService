@@ -1,0 +1,33 @@
+﻿@model System.Collections.Generic.IList<Me.WLF.Model.StateMessage>
+
+@{
+    ViewBag.Title = "StateMessages";
+}
+<table class="table table-striped table-bordered table-hover">
+    <tr>
+        <th>
+           State Name
+        </th>
+        <th>
+            Messages Management
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td class="span3">
+            @Html.DisplayFor(modelItem => item.Id)
+        </td>
+        <td class="span1">
+            @Html.DisplayFor(modelItem => item.Content)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Language)
+        </td>
+        <td class="span1">
+            @Html.ActionLink("Delete", "Del", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>
