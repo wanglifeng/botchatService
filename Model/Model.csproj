@@ -41,6 +41,7 @@
   <ItemGroup>
     <Compile Include="Admin.cs" />
     <Compile Include="ChineseLastName.cs" />
+    <Compile Include="ConstMessage.cs" />
     <Compile Include="FeedBack.cs" />
     <Compile Include="JobResult.cs" />
     <Compile Include="JobSearchModel.cs" />

@@ -12,7 +12,6 @@ namespace DomainCore.Models
         [Key]
         public int Id { get; set; }
 
-        [MaxLength(100)]
         public String Content { get; set; }
 
         public String Language { get; set; }

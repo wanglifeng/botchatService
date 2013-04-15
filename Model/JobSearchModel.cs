@@ -15,5 +15,6 @@ namespace Me.WLF.Model
         public String Keyword { get; set; }
         public String Location { get; set; }
         public int PageIndex { get; set; }
+        public String JobTitle { get; set; }
     }
 }

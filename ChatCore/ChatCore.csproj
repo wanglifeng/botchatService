@@ -75,6 +75,7 @@
     <Compile Include="States\SearchStates\BaseSearchState.cs" />
     <Compile Include="States\SearchStates\JobResultState.cs" />
     <Compile Include="States\SearchStates\SearchStartStates.cs" />
+    <Compile Include="States\SearchStates\WaitJobTitleState.cs" />
     <Compile Include="States\SearchStates\WaitLocationState.cs" />
     <Compile Include="States\UserProfileStates\UserProfileState.cs" />
     <Compile Include="States\UserProfileStates\UserProfileWaitNameState.cs" />

@@ -21,6 +21,7 @@ namespace DomainCore
         public DbSet<FeedBack> FeedBacks { get; set; }
         public DbSet<State> State { get; set; }
         public DbSet<StateMessage> StateMessages { get; set; }
+        public DbSet<ConstMessage> ConstMessages { get; set; }
 
     }
 }

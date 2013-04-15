@@ -16,6 +16,10 @@ namespace ChatCore.States
             {
                 session.State = Kernel.Get<NewState>();
             }
+            else
+            {
+                session.State = Kernel.Get<WaitLanguageState>();
+            }
         }
     }
 }

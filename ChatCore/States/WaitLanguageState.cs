@@ -29,7 +29,7 @@ namespace ChatCore.States
                     user.Language = (Language)Enum.Parse(typeof(Language), m.Content, true);
                     UserRepositary.Save(user);
                     session.State = Kernel.Get<NewState>();
-                    session.State.PreMsg = "输入成功";
+                    session.State.PreMsg = "Success";
                 }
             }
         }
@@ -42,7 +42,7 @@ namespace ChatCore.States
                 {
                     return new ReplyTextMessage()
                     {
-                        Content = "输入 Chinese 或 中文 设置您的语言为中文，输入 English 或 英文 设置您的语言为英文",
+                        Content = "输入 '中文' 设置您的语言为中文，Type 'English' to setup your major language",
                         From = _TalkSession.To,
                         To = _TalkSession.From,
                         SentTime = DateTime.Now

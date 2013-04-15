@@ -47,6 +47,7 @@
     <Compile Include="AdminRepositaryByDB.cs" />
     <Compile Include="ChatContext.cs" />
     <Compile Include="ChineseLastNameRepositaryByDB.cs" />
+    <Compile Include="ConstMessageRepositaryByDB.cs" />
     <Compile Include="DB\Transaction.cs" />
     <Compile Include="DB\User.cs" />
     <Compile Include="DB\UserTable.cs" />
@@ -104,9 +105,22 @@
     <Compile Include="Migrations\201304141104555_Add_registerTime_Into_User.Designer.cs">
       <DependentUpon>201304141104555_Add_registerTime_Into_User.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201304151513003_Set_StateMessage_Content_Length.cs" />
+    <Compile Include="Migrations\201304151513003_Set_StateMessage_Content_Length.Designer.cs">
+      <DependentUpon>201304151513003_Set_StateMessage_Content_Length.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201304151515157_Add_ConstMessage_Class.cs" />
+    <Compile Include="Migrations\201304151515157_Add_ConstMessage_Class.Designer.cs">
+      <DependentUpon>201304151515157_Add_ConstMessage_Class.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201304151516211_Add_ConstMessage_Class1.cs" />
+    <Compile Include="Migrations\201304151516211_Add_ConstMessage_Class1.Designer.cs">
+      <DependentUpon>201304151516211_Add_ConstMessage_Class1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Admin.cs" />
     <Compile Include="Models\ChineseLastName.cs" />
+    <Compile Include="Models\ConstMessage.cs" />
     <Compile Include="Models\FeedBack.cs" />
     <Compile Include="Models\Message.cs" />
     <Compile Include="Models\Question.cs" />
@@ -120,6 +134,7 @@
     <Compile Include="Repositaries\Translators\JobSearchQueryTranslator.cs" />
     <Compile Include="Repositaries\Translators\Job\HostSiteTranslator.cs" />
     <Compile Include="Repositaries\Translators\Job\IJobTranslator.cs" />
+    <Compile Include="Repositaries\Translators\Job\JobTitleTranslator.cs" />
     <Compile Include="Repositaries\Translators\Job\KeyWordTranslator.cs" />
     <Compile Include="Repositaries\Translators\Job\LocationTranslator.cs" />
     <Compile Include="Repositaries\Translators\Job\PageNumberTranslator.cs" />
@@ -178,6 +193,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201304141104555_Add_registerTime_Into_User.resx">
       <DependentUpon>201304141104555_Add_registerTime_Into_User.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201304151513003_Set_StateMessage_Content_Length.resx">
+      <DependentUpon>201304151513003_Set_StateMessage_Content_Length.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201304151515157_Add_ConstMessage_Class.resx">
+      <DependentUpon>201304151515157_Add_ConstMessage_Class.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201304151516211_Add_ConstMessage_Class1.resx">
+      <DependentUpon>201304151516211_Add_ConstMessage_Class1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

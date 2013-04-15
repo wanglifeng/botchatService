@@ -41,6 +41,7 @@
   <ItemGroup>
     <Compile Include="IAdminRepositary.cs" />
     <Compile Include="IChineseLastNameRepositary.cs" />
+    <Compile Include="IConstMessageRepositary.cs" />
     <Compile Include="IFeedBackRepositary.cs" />
     <Compile Include="IMessageRepositary.cs" />
     <Compile Include="IMessagesRepositary.cs" />

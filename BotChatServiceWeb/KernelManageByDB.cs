@@ -43,6 +43,7 @@ namespace BotChatServiceWeb
             kernel.Bind<NewState>().ToSelf();
             kernel.Bind<NewUserState>().ToSelf();
             kernel.Bind<SearchStartStates>().ToSelf();
+            kernel.Bind<WaitJobTitleState>().ToSelf();
             kernel.Bind<WaitLocationState>().ToSelf();
             kernel.Bind<UserProfileState>().ToSelf();
             kernel.Bind<UserProfileWaitNameState>().ToSelf();

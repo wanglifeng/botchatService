@@ -19,6 +19,7 @@ namespace DomainCore.Repositaries.Translators
             _Translators.Add(new PageNumberTranslator());
             _Translators.Add(new LocationTranslator());
             _Translators.Add(new KeyWordTranslator());
+            _Translators.Add(new JobTitleTranslator());
         }
 
         public JobSearchRequest Translate(JobSearchQuery query)

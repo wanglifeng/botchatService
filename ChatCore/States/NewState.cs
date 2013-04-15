@@ -27,7 +27,7 @@ namespace ChatCore.States
                 if (session.User.Language == Language.None)
                     session.State = Kernel.Get<WaitLanguageState>();
                 else if (PatternManager.IsSearchStartPattern(m.Content))
-                    session.State = Kernel.Get<SearchStartStates>();
+                    session.State = Kernel.Get<WaitJobTitleState>();
                 else if (PatternManager.IsUserProfileStart(m.Content))
                     session.State = Kernel.Get<UserProfileState>();
                 else if (PatternManager.IsNewRegisterUser(m.Content))

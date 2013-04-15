@@ -25,7 +25,7 @@ namespace ChatCore.States.UserProfileStates
                     else if (m.Content == "2")
                         session.State = Kernel.Get<UserProfileWaitNameState>();
                     else if (PatternManager.IsSearchStartPattern(m.Content))
-                        session.State = Kernel.Get<SearchStartStates>();
+                        session.State = Kernel.Get<WaitJobTitleState>();
 
                 }
             }

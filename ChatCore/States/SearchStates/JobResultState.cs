@@ -31,7 +31,7 @@ namespace ChatCore.States.SearchStates
                         //session.State = new JobResultState() { Search = Search };
                     }
                     else if (PatternManager.IsSearchStartPattern(msg.Content))
-                        session.State = Kernel.Get<SearchStartStates>();
+                        session.State = Kernel.Get<WaitJobTitleState>();
                     else if (PatternManager.IsUserProfileStart(msg.Content))
                         session.State = Kernel.Get<UserProfileState>();
                     else

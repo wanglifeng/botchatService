@@ -15,6 +15,7 @@ namespace APICaller.Models
         public string HostSite { get; set; }
         public string Keywords { get; set; }
         public String Location { get; set; }
+        public string JobTitle { get; set; }
     }
 
     [XmlRoot("ResponseJobSearch")]
