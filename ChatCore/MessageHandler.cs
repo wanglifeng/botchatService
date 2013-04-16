@@ -18,6 +18,8 @@ namespace ChatCore
             {
                 if (!String.IsNullOrEmpty(requestContext.Session.State.PreMsg))
                     (msg as ReplyTextMessage).Content = string.Format("{0}\n{1}", requestContext.Session.State.PreMsg, (msg as ReplyTextMessage).Content);
+
+                requestContext.Session.State.PreMsg = string.Empty;
             }
             responseContext.ReplyMessage = msg;
         }

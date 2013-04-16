@@ -10,8 +10,8 @@ namespace DomainCore.Repositaries.Translators.Job
     {
         public void Translate(JobSearchQuery query, JobSearchRequest request)
         {
-            if (!String.IsNullOrEmpty(query.KeyWord))
-                request.JobTitle = query.KeyWord;
+            if (!String.IsNullOrEmpty(query.JobTitle))
+                request.JobTitle = query.JobTitle;
         }
     }
 }

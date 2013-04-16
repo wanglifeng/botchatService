@@ -138,6 +138,7 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\ChineseLastNameController.cs" />
+    <Compile Include="Controllers\ConstMessageController.cs" />
     <Compile Include="Controllers\FeedBackController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MainController.cs" />
@@ -284,6 +285,8 @@
     <Content Include="Views\TalkSession\Index.cshtml" />
     <Content Include="Views\State\Index.cshtml" />
     <Content Include="Views\StateMessage\Add.cshtml" />
+    <Content Include="Views\ConstMessage\Index.cshtml" />
+    <Content Include="Views\ConstMessage\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

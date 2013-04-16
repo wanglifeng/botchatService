@@ -31,12 +31,12 @@ namespace ChatCore.States.UserProfileStates
                     user.Name = m.Content;
                     UserRepositary.Save(user);
                     var state = Kernel.Get<UserProfileState>();
-                    state.PreMsg = "Saved";
+                    state.PreMsg = Kernel.Get<IConstMessageRepositary>().GetMessage("SavedHello{0}", _TalkSession.Language, m.Content);
                     session.State = state;
                 }
                 else
                 {
-                    PreMsg = "failured";
+                    PreMsg = Kernel.Get<IConstMessageRepositary>().GetMessage("Failure{0}IsNotValidName", _TalkSession.Language, m.Content);
                 }
             }
         }

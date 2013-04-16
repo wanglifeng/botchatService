@@ -18,6 +18,7 @@ namespace DomainCore
        public String Location { get; set; }
        public int StartIndex { get; set; }
        public int PageSize { get; set; }
+       public string JobTitle { get; set; }
 
        public string GenearteCacheKey()
        {

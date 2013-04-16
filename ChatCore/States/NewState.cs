@@ -27,7 +27,7 @@ namespace ChatCore.States
                 if (session.User.Language == Language.None)
                     session.State = Kernel.Get<WaitLanguageState>();
                 else if (PatternManager.IsSearchStartPattern(m.Content))
-                    session.State = Kernel.Get<WaitJobTitleState>();
+                    session.State = Kernel.Get<SearchStartStates>();
                 else if (PatternManager.IsUserProfileStart(m.Content))
                     session.State = Kernel.Get<UserProfileState>();
                 else if (PatternManager.IsNewRegisterUser(m.Content))
@@ -42,9 +42,10 @@ namespace ChatCore.States
                         ClientId = "wechat",
                         Content = m.Content
                     });
-                    PreMsg = "谢谢您的反馈";
+                    PreMsg = Kernel.Get<IConstMessageRepositary>().GetMessage("ThanksYourFeedBack", _TalkSession.Language);
 
                     session.State = Kernel.Get<NewState>();
+                    session.State.PreMsg = PreMsg;
                 }
             }
             else if (msg is RequestEventMessage)
@@ -55,12 +56,12 @@ namespace ChatCore.States
                     if (session.User.Language == Language.None)
                     {
                         session.State = Kernel.Get<WaitLanguageState>();
-                        session.State.PreMsg = "Welcome New User";
+                        session.State.PreMsg = Kernel.Get<IConstMessageRepositary>().GetMessage("WelcomeNewUser", _TalkSession.Language); ;
                     }
                     else
                     {
                         session.State = Kernel.Get<NewUserState>();
-                        session.State.PreMsg = "Welcome Back";
+                        session.State.PreMsg = Kernel.Get<IConstMessageRepositary>().GetMessage("WelcomeBack", _TalkSession.Language); ; ;
                     }
                 }
             }

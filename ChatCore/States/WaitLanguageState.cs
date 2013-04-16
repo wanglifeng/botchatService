@@ -42,7 +42,7 @@ namespace ChatCore.States
                 {
                     return new ReplyTextMessage()
                     {
-                        Content = "输入 '中文' 设置您的语言为中文，Type 'English' to setup your major language",
+                        Content = Kernel.Get<IConstMessageRepositary>().GetMessage("PleaseTypeYourLanguage", _TalkSession.Language),
                         From = _TalkSession.To,
                         To = _TalkSession.From,
                         SentTime = DateTime.Now

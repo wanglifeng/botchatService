@@ -56,6 +56,7 @@ namespace BotChatServiceWeb
             kernel.Bind<IChineseLastNameRepositary>().To<ChineseLastNameRepositaryByDB>();
             kernel.Bind<IStateMessageRepositary>().To<StateMessageRepositaryByDB>();
             kernel.Bind<IFeedBackRepositary>().To<FeedBackRepositaryByDB>();
+            kernel.Bind<IConstMessageRepositary>().To<ConstMessageRepositaryByDB>();
 
             kernel.Bind<MessageRequestContext>().ToSelf();
             kernel.Bind<IPatternManager>().To<PatternManager>();

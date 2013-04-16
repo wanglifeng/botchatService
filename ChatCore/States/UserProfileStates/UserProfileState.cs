@@ -7,6 +7,7 @@ using System.Text;
 using Me.WLF.Model;
 using Ninject;
 using ChatCore.States.SearchStates;
+using Me.WLF.IDAL;
 
 namespace ChatCore.States.UserProfileStates
 {
@@ -25,11 +26,11 @@ namespace ChatCore.States.UserProfileStates
                     else if (m.Content == "2")
                         session.State = Kernel.Get<UserProfileWaitNameState>();
                     else if (PatternManager.IsSearchStartPattern(m.Content))
-                        session.State = Kernel.Get<WaitJobTitleState>();
+                        session.State = Kernel.Get<SearchStartStates>();
 
                 }
             }
-            PreMsg = "you must entern 1 or 2 ~";
+            PreMsg = Kernel.Get<IConstMessageRepositary>().GetMessage("ShoudBe1Or2", _TalkSession.Language); ; ;
         }
     }
 }

@@ -8,6 +8,7 @@ using ChatCore.Patterns;
 using Me.WLF.Model;
 using Ninject;
 using ChatCore.States.UserProfileStates;
+using Me.WLF.IDAL;
 
 namespace ChatCore.States.SearchStates
 {
@@ -27,11 +28,9 @@ namespace ChatCore.States.SearchStates
                     else if (PatternManager.IsGoToPrePage(msg.Content))
                     {
                         Search.PageIndex--;
-                        //session.State = this;
-                        //session.State = new JobResultState() { Search = Search };
                     }
                     else if (PatternManager.IsSearchStartPattern(msg.Content))
-                        session.State = Kernel.Get<WaitJobTitleState>();
+                        session.State = Kernel.Get<SearchStartStates>();
                     else if (PatternManager.IsUserProfileStart(msg.Content))
                         session.State = Kernel.Get<UserProfileState>();
                     else
@@ -48,6 +47,7 @@ namespace ChatCore.States.SearchStates
                 var results = repositary.Search(new JobSearchQuery()
                 {
                     KeyWord = Search.Keyword,
+                    JobTitle = Search.JobTitle,
                     Location = Search.Location,
                     PageSize = 3,
                     StartIndex = Search.PageIndex * 3
@@ -71,9 +71,14 @@ namespace ChatCore.States.SearchStates
                         }).ToList()
                     };
 
+                    var jobresultNote = new StringBuilder();
+                    jobresultNote.Append(Kernel.Get<IConstMessageRepositary>().GetMessage("Press1NextPage", _TalkSession.Language));
+                    jobresultNote.Append(Kernel.Get<IConstMessageRepositary>().GetMessage("Press2PrePage", _TalkSession.Language));
+                    jobresultNote.Append(Kernel.Get<IConstMessageRepositary>().GetMessage("ClickGotJobList", _TalkSession.Language));
+
                     r.Results.Add(new JobResult()
                     {
-                        Title = "输入1查看下一页，2查看上一页，点击可以查看列表",
+                        Title = jobresultNote.ToString(),
                         JobDetailsURL = string.Format("http://mobile.careerbuilder.com.cn/seeker/search?go=1&kw={0}&loc={1}", Search.Keyword, Search.Location)
                     });
 
@@ -86,7 +91,7 @@ namespace ChatCore.States.SearchStates
                         SentTime = DateTime.Now,
                         From = _TalkSession.To,
                         To = _TalkSession.From,
-                        Content = "啊欧，没有找到工作。。。。。重新开始搜索吧~~"
+                        Content = Kernel.Get<IConstMessageRepositary>().GetMessage("NoJobFound", _TalkSession.Language)
                     };
                 }
             }

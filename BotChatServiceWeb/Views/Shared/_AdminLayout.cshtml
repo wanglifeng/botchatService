@@ -16,6 +16,8 @@
             <li @RenderSection("NavState", false)>@Html.ActionLink("State", "Index", "State")</li>
             <li class="divider-vertical"></li>
             <li @RenderSection("NavTalkSession", false)>@Html.ActionLink("TalkSession", "Index", "TalkSession")</li>
+            <li class="divider-vertical"></li>
+            <li @RenderSection("NavConstMessages", false)>@Html.ActionLink("Const Messages", "Index", "ConstMessage")</li>
         </ul>
     </div>
 
