@@ -23,6 +23,9 @@ namespace DomainCore.Models
 
         public DateTime RegisterTime { get; set; }
 
+        [MaxLength(50)]
+        public String Status { get; set; }
+
         [MaxLength(10)]
         public String Language { get; set; }
 
@@ -37,7 +40,8 @@ namespace DomainCore.Models
                 Id = u.Id,
                 UserName = u.UserName,
                 Language = u.Language.ToString(),
-                RegisterTime = u.RegisterTime
+                RegisterTime = u.RegisterTime,
+                Status = u.Status
             };
         }
 
@@ -52,7 +56,8 @@ namespace DomainCore.Models
                 Id = u.Id,
                 UserName = u.UserName,
                 Language = (Me.WLF.Model.Language)Enum.Parse(typeof(Me.WLF.Model.Language), u.Language, true),
-                RegisterTime = u.RegisterTime
+                RegisterTime = u.RegisterTime,
+                Status = u.Status
             };
         }
     }

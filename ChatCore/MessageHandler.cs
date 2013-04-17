@@ -5,6 +5,8 @@ using System.Text;
 
 using System.Threading;
 using Me.WLF.Model;
+using Ninject;
+using Me.WLF.IDAL;
 
 namespace ChatCore
 {
@@ -12,6 +14,9 @@ namespace ChatCore
     {
         public void HandleRequest(MessageRequestContext requestContext, MessageReplyContext responseContext)
         {
+            var repo = KernelManager.Kernel.Get<IMessageRepositary>();
+            repo.Save(requestContext.MessageRequest);
+
             requestContext.Session.Request(requestContext.MessageRequest);
             var msg = requestContext.Session.ReplyMessage;
             if (msg is ReplyTextMessage)
@@ -22,6 +27,8 @@ namespace ChatCore
                 requestContext.Session.State.PreMsg = string.Empty;
             }
             responseContext.ReplyMessage = msg;
+
+            repo.Save(msg);
         }
     }
 }

@@ -33,6 +33,13 @@
     <Reference Include="EntityFramework">
       <HintPath>..\packages\EntityFramework.5.0.0\lib\net40\EntityFramework.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.5.0.3\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="RestSharp, Version=104.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\RestSharp.104.1\lib\net4\RestSharp.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -59,11 +66,11 @@
     <Compile Include="Filters\LocationFilters.cs" />
     <Compile Include="Filters\UnKnowFilter.cs" />
     <Compile Include="IJobRepositary.cs" />
-    <Compile Include="IMessageRepositry.cs" />
     <Compile Include="IQuestionRepositary.cs" />
     <Compile Include="JobLoader.cs" />
     <Compile Include="ICacheObject.cs" />
     <Compile Include="JobRepositaryByAPI.cs" />
+    <Compile Include="JobRepositaryByBaiJob.cs" />
     <Compile Include="JobSearchResult.cs" />
     <Compile Include="Migrations\201303041712281_Add_ChineseLastname_class.cs" />
     <Compile Include="Migrations\201303041712281_Add_ChineseLastname_class.Designer.cs">
@@ -117,6 +124,18 @@
     <Compile Include="Migrations\201304151516211_Add_ConstMessage_Class1.Designer.cs">
       <DependentUpon>201304151516211_Add_ConstMessage_Class1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201304171531170_Add_MessageType_Into_Message_Class.cs" />
+    <Compile Include="Migrations\201304171531170_Add_MessageType_Into_Message_Class.Designer.cs">
+      <DependentUpon>201304171531170_Add_MessageType_Into_Message_Class.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201304171552073_Set_Message_Content_Length_To-Max.cs" />
+    <Compile Include="Migrations\201304171552073_Set_Message_Content_Length_To-Max.Designer.cs">
+      <DependentUpon>201304171552073_Set_Message_Content_Length_To-Max.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201304171602038_Set_UserStatus_Into_user_Class.cs" />
+    <Compile Include="Migrations\201304171602038_Set_UserStatus_Into_user_Class.Designer.cs">
+      <DependentUpon>201304171602038_Set_UserStatus_Into_user_Class.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Admin.cs" />
     <Compile Include="Models\ChineseLastName.cs" />
@@ -127,7 +146,7 @@
     <Compile Include="Models\State.cs" />
     <Compile Include="Models\StateMessage.cs" />
     <Compile Include="Models\User.cs" />
-    <Compile Include="MsgRepositry.cs" />
+    <Compile Include="MessageRepositry.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QuestionRepostaryByDB.cs" />
     <Compile Include="Reboter.cs" />
@@ -202,6 +221,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201304151516211_Add_ConstMessage_Class1.resx">
       <DependentUpon>201304151516211_Add_ConstMessage_Class1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201304171531170_Add_MessageType_Into_Message_Class.resx">
+      <DependentUpon>201304171531170_Add_MessageType_Into_Message_Class.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201304171552073_Set_Message_Content_Length_To-Max.resx">
+      <DependentUpon>201304171552073_Set_Message_Content_Length_To-Max.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201304171602038_Set_UserStatus_Into_user_Class.resx">
+      <DependentUpon>201304171602038_Set_UserStatus_Into_user_Class.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

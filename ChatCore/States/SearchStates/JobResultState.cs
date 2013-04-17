@@ -43,7 +43,7 @@ namespace ChatCore.States.SearchStates
         {
             get
             {
-                IJobRepositary repositary = new JobRepositaryByAPI();
+                IJobRepositary repositary = new JobRepositaryByBaiJob();
                 var results = repositary.Search(new JobSearchQuery()
                 {
                     KeyWord = Search.Keyword,

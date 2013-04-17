@@ -1,0 +1,28 @@
+﻿@model IList<Me.WLF.Model.Message>
+
+@{
+    ViewBag.Title = "User Messages";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<table class="table table-striped table-bordered table-hover">
+    <tr>
+        <th>
+            Content
+        </th>
+        <th>
+            SentTime
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@Newtonsoft.Json.JsonConvert.SerializeObject(item)</td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SentTime)
+            </td>
+        </tr>
+    }
+
+</table>

@@ -287,6 +287,7 @@
     <Content Include="Views\StateMessage\Add.cshtml" />
     <Content Include="Views\ConstMessage\Index.cshtml" />
     <Content Include="Views\ConstMessage\Edit.cshtml" />
+    <Content Include="Views\User\Messages.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

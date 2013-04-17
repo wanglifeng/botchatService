@@ -18,5 +18,11 @@ namespace Me.WLF.DALByStatic
             Messages.Add(msg);
             Console.WriteLine("Saved Msg");
         }
+
+
+        public List<Message> List(string from)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

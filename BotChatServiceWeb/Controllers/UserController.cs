@@ -5,10 +5,11 @@ using System.Web;
 using System.Web.Mvc;
 using DomainCore;
 using Me.WLF.IDAL;
+using Ninject;
 
 namespace BotChatServiceWeb.Controllers
 {
-    public class UserController : Controller
+    public class UserController : BaseController
     {
         //
         // GET: /User/
@@ -24,6 +25,12 @@ namespace BotChatServiceWeb.Controllers
             IUserRepositary repo = new UserRepositaryByDB();
             repo.Del(id);
             return RedirectToAction("Index");
+        }
+
+        public ActionResult Messages(string userId)
+        {
+            IMessageRepositary repo = Kernel.Get<IMessageRepositary>();
+            return View(repo.List(userId));
         }
 
         

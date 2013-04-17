@@ -64,6 +64,8 @@ namespace BotChatServiceWeb
             kernel.Bind<IAdminRepositary>().To<AdminRepositaryByDB>();
             kernel.Bind<IStateRepostatry>().To<StateRepostatryByDB>();
 
+            kernel.Bind<IMessageRepositary>().To<MessageRepositry>();
+
             return kernel;
 
         }

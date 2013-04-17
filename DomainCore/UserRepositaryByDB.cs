@@ -47,6 +47,7 @@ namespace DomainCore
                     u.Location = user.Location;
                     u.Name = user.Name;
                     u.Language = user.Language.ToString();
+                    u.Status = user.Status;
                 }
                 c.SaveChanges();
             }

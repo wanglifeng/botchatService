@@ -61,7 +61,7 @@ namespace ChatCore
                 var user = UserRepositary.GetByUserName(From);
                 if (user == null)
                 {
-                    user = new User() { UserName = From, ClientId = ClientId, RegisterTime = DateTime.Now };
+                    user = new User() { UserName = From, ClientId = ClientId, RegisterTime = DateTime.Now, Language = Me.WLF.Model.Language.Chinese, Status = "subscribe" };
                     UserRepositary.Save(user);
                     user = UserRepositary.GetByUserName(From);
                 }

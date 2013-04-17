@@ -33,6 +33,7 @@ class="active"
         <th>
             @Html.DisplayNameFor(model => model.RegisterTime)
         </th>
+        <th>@Html.DisplayNameFor(model => model.Status)</th>
         <th>Management</th>
     </tr>
 
@@ -56,7 +57,9 @@ class="active"
             </td>
             <td>@Html.DisplayFor(modelItem => item.Language)</td>
             <td>@Html.DisplayFor(modelItem => item.RegisterTime)</td>
+            <td>@Html.DisplayFor(modelItem => item.Status)</td>
             <td class="span1">
+                @Html.ActionLink("Messages", "Messages", new { userId = item.UserName })
                 @Html.ActionLink("Delete", "Del", new { id = item.Id })
             </td>
         </tr>

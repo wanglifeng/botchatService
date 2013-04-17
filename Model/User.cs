@@ -15,6 +15,7 @@ namespace Me.WLF.Model
         public String Degree { get; set; }
         public Language Language { get; set; }
         public DateTime RegisterTime { get; set; }
+        public String Status { get; set; }
 
         public User() { Language = Language.None; }
     }

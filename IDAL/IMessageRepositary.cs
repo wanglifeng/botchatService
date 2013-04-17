@@ -9,5 +9,6 @@ namespace Me.WLF.IDAL
     public interface IMessageRepositary
     {
         void Save(Message msg);
+        List<Message> List(string from);
     }
 }

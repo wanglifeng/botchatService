@@ -14,10 +14,12 @@ namespace DomainCore.Models
         public String From { get; set; }
         [MaxLength(50), Required]
         public String To { get; set; }
-        [MaxLength(500), Required]
+        
         public String Content { get; set; }
         [Required]
         public DateTime CreateDT { get; set; }
+        [MaxLength(100)]
+        public String MessageType { get; set; }
 
        
     }

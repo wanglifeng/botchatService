@@ -25,19 +25,19 @@ namespace ChatCore.States.UserProfileStates
             if (msg is RequestTextMessage)
             {
                 var m = msg as RequestTextMessage;
-                if (PatternManager.IsChineseLastName(m.Content))
-                {
-                    var user = UserRepositary.GetByUserName(session.From);
-                    user.Name = m.Content;
-                    UserRepositary.Save(user);
-                    var state = Kernel.Get<UserProfileState>();
-                    state.PreMsg = Kernel.Get<IConstMessageRepositary>().GetMessage("SavedHello{0}", _TalkSession.Language, m.Content);
-                    session.State = state;
-                }
-                else
-                {
-                    PreMsg = Kernel.Get<IConstMessageRepositary>().GetMessage("Failure{0}IsNotValidName", _TalkSession.Language, m.Content);
-                }
+                //if (PatternManager.IsChineseLastName(m.Content))
+                //{
+                var user = UserRepositary.GetByUserName(session.From);
+                user.Name = m.Content;
+                UserRepositary.Save(user);
+                var state = Kernel.Get<UserProfileState>();
+                state.PreMsg = Kernel.Get<IConstMessageRepositary>().GetMessage("SavedHello{0}", _TalkSession.Language, m.Content);
+                session.State = state;
+                //}
+                //else
+                //{
+                //    PreMsg = Kernel.Get<IConstMessageRepositary>().GetMessage("Failure{0}IsNotValidName", _TalkSession.Language, m.Content);
+                //}
             }
         }
     }
