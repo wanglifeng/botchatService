@@ -14,6 +14,11 @@ namespace ChatCore.States.SearchStates
 {
     public class JobResultState : BaseSearchState
     {
+        private ReplyMessage _ReplyMessage = null;
+
+        [Inject]
+        public IFeedBackRepositary FeedBackRepositary { get; set; }
+
         public override void HandleMsg(TalkSession session, RequestMessage message)
         {
             if (message is RequestTextMessage)
@@ -33,6 +38,19 @@ namespace ChatCore.States.SearchStates
                         session.State = Kernel.Get<SearchStartStates>();
                     else if (PatternManager.IsUserProfileStart(msg.Content))
                         session.State = Kernel.Get<UserProfileState>();
+                    else if (PatternManager.IsFeedBackPattern(msg.Content))
+                    {
+                        FeedBackRepositary.Save(new Me.WLF.Model.FeedBack()
+                        {
+                            UserName = msg.From,
+                            ClientId = "wechat",
+                            Content = msg.Content
+                        });
+                        PreMsg = Kernel.Get<IConstMessageRepositary>().GetMessage("ThanksYourFeedBack", _TalkSession.Language);
+
+                        session.State = Kernel.Get<NewState>();
+                        session.State.PreMsg = PreMsg;
+                    }
                     else
                         session.State = Kernel.Get<NewState>();
                 }
@@ -43,7 +61,10 @@ namespace ChatCore.States.SearchStates
         {
             get
             {
-                IJobRepositary repositary = new JobRepositaryByBaiJob();
+                if (_ReplyMessage != null)
+                    return _ReplyMessage;
+
+                IJobRepositary repositary = new JobRepositaryByAliCSS();
                 var results = repositary.Search(new JobSearchQuery()
                 {
                     KeyWord = Search.Keyword,
@@ -53,7 +74,7 @@ namespace ChatCore.States.SearchStates
                     StartIndex = Search.PageIndex * 3
                 });
 
-                if (results.Count > 0)
+                if (results != null && results.Count > 0)
                 {
                     var r = new ReplyJobResultMessage()
                     {
@@ -82,11 +103,11 @@ namespace ChatCore.States.SearchStates
                         JobDetailsURL = string.Format("http://mobile.careerbuilder.com.cn/seeker/search?go=1&kw={0}&loc={1}", Search.Keyword, Search.Location)
                     });
 
-                    return r;
+                    _ReplyMessage = r;
                 }
                 else
                 {
-                    return new ReplyTextMessage()
+                    _ReplyMessage = new ReplyTextMessage()
                     {
                         SentTime = DateTime.Now,
                         From = _TalkSession.To,
@@ -94,6 +115,8 @@ namespace ChatCore.States.SearchStates
                         Content = Kernel.Get<IConstMessageRepositary>().GetMessage("NoJobFound", _TalkSession.Language)
                     };
                 }
+
+                return _ReplyMessage;
             }
         }
     }

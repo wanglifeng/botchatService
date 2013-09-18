@@ -63,11 +63,14 @@ namespace ChatCore.States
                         session.State = Kernel.Get<NewUserState>();
                         session.State.PreMsg = Kernel.Get<IConstMessageRepositary>().GetMessage("WelcomeBack", _TalkSession.Language); ; ;
                     }
+                    session.User.Status = "subscribe";
+                    Kernel.Get<IUserRepositary>().Save(session.User);
                 }
                 else if (m.Event == "unsubscribe")
                 {
                     session.User.Status = "unsubscribe";
                     Kernel.Get<IUserRepositary>().Save(session.User);
+                    Kernel.Get<ITalkSessionRepositry>().Remove(session.User.UserName);
                 }
             }
         }

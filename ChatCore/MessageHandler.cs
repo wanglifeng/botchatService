@@ -22,7 +22,7 @@ namespace ChatCore
             if (msg is ReplyTextMessage)
             {
                 if (!String.IsNullOrEmpty(requestContext.Session.State.PreMsg))
-                    (msg as ReplyTextMessage).Content = string.Format("{0}\n{1}", requestContext.Session.State.PreMsg, (msg as ReplyTextMessage).Content);
+                    (msg as ReplyTextMessage).Content = string.Format("{0}{1}{2}", requestContext.Session.State.PreMsg, System.Environment.NewLine, (msg as ReplyTextMessage).Content);
 
                 requestContext.Session.State.PreMsg = string.Empty;
             }
