@@ -61,8 +61,8 @@ namespace ChatCore.States.SearchStates
         {
             get
             {
-                if (_ReplyMessage != null)
-                    return _ReplyMessage;
+                //if (_ReplyMessage != null)
+                //    return _ReplyMessage;
 
                 IJobRepositary repositary = new JobRepositaryByAliCSS();
                 var results = repositary.Search(new JobSearchQuery()

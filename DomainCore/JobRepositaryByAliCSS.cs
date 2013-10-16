@@ -22,7 +22,7 @@ namespace DomainCore
             var results = caller.Search.DoSearch<Novel>("campusjobs", searchParams);
 
             if (results != null)
-                return results.result.items.Select(t => new JobSearchResult()
+                return results.result.items.Take(3).Select(t => new JobSearchResult()
                 {
                     JobTitle = t.era,
                     JobDetailsURL = t.url
